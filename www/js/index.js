@@ -1,5 +1,17 @@
 angular.module('ionicApp', ['ionic'])
 
+
+.run(['$ionicPlatform','$timeout','$state','$window', 
+    function($ionicPlatform,$timeout,$state,$window) {
+
+        alert("app.run()  runs ...");
+		$timeout(function() {
+			//$state.go('#/event/home');
+			$window.location.href = '#/event/home';
+		}, 10);
+
+    }])
+	
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
@@ -39,6 +51,7 @@ angular.module('ionicApp', ['ionic'])
 })
 
 .controller('MainCtrl', function($scope, $ionicSideMenuDelegate,$timeout) {
+	console.log('MainCtrl');
 	$scope.items = ['Item 1', 'Item 2', 'Item 3'];
   $scope.attendees = [
     { firstname: 'Nicolas', lastname: 'Cage' },
