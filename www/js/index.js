@@ -6,8 +6,6 @@ angular.module('ionicApp', ['ionic'])
 		$ionicPlatform.ready(function(){
 			alert('Hi Device Ready');
 		});
-        
-
     }])
 
 .config(function ($compileProvider) {

@@ -1,0 +1,36 @@
+<ion-view view-title="Welcome">
+	<ion-content class="padding">
+		<ion-refresher on-refresh="doRefresh()">		 
+		</ion-refresher>
+		<div>
+			<div class="scrollable">
+				<div class="scrollable-content">
+					<div class="well">
+						Please Enter login Details. School/College Url And username and password provided by organisation.
+					</div>
+					<div ng-show="loading" class="app-content-loading">
+					  <i class="fa fa-circle-o-notch fa-spin"></i>
+					</div>
+					<form name="loginForm" novalidate role="form" class="simple-form">
+						<div class="form-group">
+							<input type="text" name="instance_name" ng-model="instName" class="topcoat-text-input--large" placeholder="Instance Name" ng-show="instDis" style="width:100%" value="" required />
+						</div>
+						<div class="form-group">
+							<div>
+								<input type="text" name="user_name" ng-model="userName" class="topcoat-text-input--large" placeholder="User Name" style="width:100%" value="" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<div>
+								<input type="password" name="password" ng-model="password" class="topcoat-text-input--large" placeholder="Password" style="width:100%" value="" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="button" value="Login" ng-click="submit(loginForm)" class="btn btn-primary btn-lg btn-block"/> 
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
