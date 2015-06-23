@@ -7,12 +7,16 @@ angular.module('ionicApp', ['ionic'])
         alert("app.run()  runs ...");
 		$timeout(function() {
 			//$state.go('#/event/home');
-			$window.location.href = '#/event/home';
+			//$window.location.href = '#/event/home';
 		}, 10);
 
     }])
-	
-.config(function($stateProvider, $urlRouterProvider) {
+
+.config(function ($compileProvider) {
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+})
+
+.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
     .state('eventmenu', {
@@ -48,7 +52,7 @@ angular.module('ionicApp', ['ionic'])
     })
   
   $urlRouterProvider.otherwise("/event/home");
-})
+}])
 
 .controller('MainCtrl', function($scope, $ionicSideMenuDelegate,$timeout) {
 	console.log('MainCtrl');
