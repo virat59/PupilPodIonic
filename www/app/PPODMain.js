@@ -2,12 +2,14 @@ var app = angular.module('PPOD',['ionic',"ngCordova"]);
 
 app.constant('url', 'NBA/amfphp-2.1/Amfphp/?contentType=application/json');
 
-app.run(function($ionicPlatform) {
-    FastClick.attach(document.body);
+app.run(['$ionicPlatform','$timeout','$state','$window', 
+	function($ionicPlatform,$timeout,$state,$window) {
+	alert('Hi Inside Run');
+	FastClick.attach(document.body);
 	$ionicPlatform.ready(function(){
 		alert('Hi Device Ready');
 	});
-});
+}]);
 
 app.factory('myCache', function($cacheFactory) {
  return $cacheFactory('myData');
