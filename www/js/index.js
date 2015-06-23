@@ -3,7 +3,9 @@ angular.module('ionicApp', ['ionic'])
 
 .run(['$ionicPlatform','$timeout','$state','$window', 
     function($ionicPlatform,$timeout,$state,$window) {
-
+		$ionicPlatform.ready(function(){
+			alert('Hi Device Ready');
+		});
         
 
     }])
