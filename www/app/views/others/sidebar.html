@@ -19,6 +19,10 @@
 				<a class="item" href="#/exam_details" ng-click="swapeOff();" menu-close>Examination</a>
 				<a class="item" href="#/fees" ng-click="swapeOff();" menu-close>Fees</a>
 			</ul>
+			<div class="item item-divider">
+              Change Student
+            </div>
+			<dropdown class="ng-isolate-scope" selected="student" property="name" list="students" placeholder="Select Student"></dropdown>
 		</ion-content>
 	</ion-side-menu>
 </ion-side-menus>
