@@ -1,7 +1,22 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache){
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache,$ionicPlatform,$ionicSideMenuDelegate){
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	$scope.student_name = sharedProperties.getStudentSelectedName();
+	
+	$scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
+  
+	$scope.doRefresh = function() {
+		console.log('Refreshing!');
+		$timeout( function() {
+		  //simulate async response
+		  $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+		  //Stop the ion-refresher from spinning
+		  $scope.$broadcast('scroll.refreshComplete');
+		}, 1000);
+	};
+	
 	
 	//$scope.student_name = "";
 	function initialize() {
@@ -20,7 +35,10 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	function bindEvents() {
 		//alert('Hi In BindEvents');
-        document.addEventListener('deviceready', onDeviceReady, false);	
+        document.addEventListener('deviceready', onDeviceReady, false);
+		$ionicPlatform.ready(function(){
+			alert('Hi Device Ready in PPODController');
+		});
     };
 	
 	

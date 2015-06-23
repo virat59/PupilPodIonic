@@ -1,8 +1,8 @@
-var app = angular.module('PPOD',['ngRoute','mobile-angular-ui','mobile-angular-ui.gestures','pushNotifications.ctrl',"ngCordova",'ngAnimate','mgcrea.pullToRefresh']);
+var app = angular.module('PPOD',['ionic',"ngCordova"]);
 
 app.constant('url', 'NBA/amfphp-2.1/Amfphp/?contentType=application/json');
 
-app.run(function() {
+app.run(function($ionicPlatform) {
     FastClick.attach(document.body);
 	$ionicPlatform.ready(function(){
 		alert('Hi Device Ready');
@@ -13,7 +13,7 @@ app.factory('myCache', function($cacheFactory) {
  return $cacheFactory('myData');
 });
 
-app..config(function ($compileProvider) {
+app.config(function ($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 });
 
@@ -95,6 +95,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
         }
       }
     })
+	$urlRouterProvider.otherwise("/event/home");
 }]);
 
 app.service('sharedProperties', function () {
