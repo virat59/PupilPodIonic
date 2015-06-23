@@ -499,7 +499,9 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 				ref.close();
 			} 
 		});
-		ref.addEventListener('exit', function(event) { $state.go('eventmenu.paymentCallBack');//$window.location.href = '#/paymentCallBack'; });
+		ref.addEventListener('exit', function(event) { $state.go('eventmenu.paymentCallBack'); });
+		//$window.location.href = '#/paymentCallBack'; 
+		
 	}
 	fnInit();
 });
