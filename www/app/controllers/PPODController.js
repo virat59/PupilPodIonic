@@ -22,7 +22,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	function initialize() {
 		$scope.ngViewClass = "modalOff";
 		if(sharedProperties.getIsLogin() == true){
-			$window.location.href = '#/mainLanding';
+			//$window.location.href = '#/mainLanding';
+			$state.go('eventmenu.mainLanding');
 			return false;
 		}	
 		$scope.db = null;
@@ -93,7 +94,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
             //alert('registration ID = ' + notification.regid);
 			//alert('Hii Came');
 			PPODService.AddValueToDB($scope,'reg_id',notification.regid);
-			$window.location.href = '#/login';
+			//$window.location.href = '#/login';
+			$state.go('eventmenu.login');
           }
           break;
 
@@ -138,7 +140,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$rootScope.$on('studentChanged',function(event,args){
 		$scope.student_name = args['name'];
 		//myCache.put('main_students_guid', args['student_guid']);
-		$window.location.href = '#/change_student';
+		//$window.location.href = '#/change_student';
+		$state.go('eventmenu.change_student');
 			return false;
 	});
 	
@@ -356,7 +359,8 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	function fnInit(){
 		$scope.$emit('modelOffEvent', true);
 		if(sharedProperties.getIsLogin() == true){
-			$window.location.href = '#/mainLanding';
+			//$window.location.href = '#/mainLanding';
+			$state.go('eventmenu.mainLanding');
 			return false;
 		}
 		$scope.loading = true;
@@ -409,7 +413,8 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
 	function fnInit(){
-		$window.location.href = '#/mainLanding';
+		//$window.location.href = '#/mainLanding';
+		$state.go('eventmenu.mainLanding');
 		return false;
     }
 	fnInit();
@@ -494,7 +499,7 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 				ref.close();
 			} 
 		});
-		ref.addEventListener('exit', function(event) { $window.location.href = '#/paymentCallBack'; });
+		ref.addEventListener('exit', function(event) { $state.go('eventmenu.paymentCallBack');//$window.location.href = '#/paymentCallBack'; });
 	}
 	fnInit();
 });
