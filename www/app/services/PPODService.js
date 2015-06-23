@@ -5,7 +5,7 @@
  */
 
 
-app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope){    
+app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope,$state){    
 	this.dbConnection = function($scope,sharedProperties){
 		var shortName = 'tnet_pupilpod';
 		var version = '1.0';
@@ -128,7 +128,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 								}
 							}
 						},errorHandlerQuery);
-						$window.location.href = '#/login';
+						//$window.location.href = '#/login';
+						$state.go('eventmenu.login');
 					}
 				}
 				else{
