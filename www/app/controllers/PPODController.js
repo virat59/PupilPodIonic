@@ -1,4 +1,4 @@
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache,$ionicPlatform,$ionicSideMenuDelegate){
+app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache,$ionicPlatform,$ionicSideMenuDelegate,$state){
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	$scope.student_name = sharedProperties.getStudentSelectedName();
@@ -354,7 +354,7 @@ app.directive('carouselItem', function($drag) {
   };
 });
 
-app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q){
+app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q,$state){
 	$scope.instDis = true;
 	function fnInit(){
 		$scope.$emit('modelOffEvent', true);
@@ -411,7 +411,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	fnInit();
 });
 
-app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
+app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state){
 	function fnInit(){
 		//$window.location.href = '#/mainLanding';
 		$state.go('eventmenu.mainLanding');
@@ -480,7 +480,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 
 
 
-app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties){
+app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties,$state){
 	var ref = "";
 	function fnInit(){
 		$scope.$emit('modelOffEvent', true);	
