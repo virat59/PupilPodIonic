@@ -95,14 +95,14 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				};
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
-						//alert('Entry Not Exist 11');
+						alert('Entry Not Exist 11');
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
 							alert('Error '+err);
 						})
 					}
 					else{
-						//alert('Entry Exist');
+						alert('Entry Exist');
 						transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, resultT1)
 						{
 							for (var i = 0; i < resultT1.rows.length; i++) {
@@ -132,7 +132,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					}
 				}
 				else{
-					//alert('Entry Not Exist 22');
+					alert('Entry Not Exist 22');
 					$cordovaPush.register(androidConfig).then(function(resultPush) {
 					}, function(err) {
 						// Error
