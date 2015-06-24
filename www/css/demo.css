@@ -417,3 +417,8 @@ input.scrollable-header {
 .list-group-table .list-group-item:first-child {
   border-top-width: 0;
 }
+
+.spinner svg {
+  width: 19% !important;
+  height: 85px !important;
+}
