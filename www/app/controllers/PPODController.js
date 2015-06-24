@@ -369,19 +369,29 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 			return false;
 		}
 		$scope.loading = true;
+		$scope.login = {
+			instName: "",
+			userName: "",
+			password: "",
+			registration_key: "",
+			app_id: "",
+			user_guid: ""
+		};
+		
 		var regkey = sharedProperties.getRegKey();
 		var usernameTemp = sharedProperties.getUserName();
 		var passwordTemp = sharedProperties.getPassWord();
 		var instnameTemp = sharedProperties.getInstName();
 		var appId = sharedProperties.getAppId();
+		var userGuid = sharedProperties.getUserGuid();
 		//alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
 		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
 			$scope.login.instName = instnameTemp;
 			$scope.login.userName = usernameTemp;
 			$scope.login.password = passwordTemp;
-			$scope.registration_key = regkey;
-			$scope.app_id = appId;
-			$scope.user_guid = 
+			$scope.login.registration_key = regkey;
+			$scope.login.app_id = appId;
+			$scope.login.user_guid = userGuid;
 			PPODService.loginFunction($scope,sharedProperties,myCache);
 		}
 		else{
