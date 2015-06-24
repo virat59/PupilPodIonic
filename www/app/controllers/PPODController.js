@@ -404,7 +404,9 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	$scope.submit = function(form) {
 		$scope.loading = true;
 		$scope.submitted = true;
-		$scope.registration_key = sharedProperties.getRegKey();
+		$scope.login.registration_key = sharedProperties.getRegKey();
+		$scope.login.app_id = sharedProperties.getAppId();
+		$scope.login.user_guid = sharedProperties.getUserGuid();
 		alert('Insit Name '+$scope.login.instName);
 		alert('Insit Name '+$scope.login.userName);
 		alert('Insit Name '+$scope.login.password);
