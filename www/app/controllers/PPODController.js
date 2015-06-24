@@ -391,7 +391,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		var instnameTemp = sharedProperties.getInstName();
 		var appId = sharedProperties.getAppId();
 		var userGuid = sharedProperties.getUserGuid();
-		alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
+		//alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
 		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
 			$scope.login.instName = instnameTemp;
 			$scope.login.userName = usernameTemp;
@@ -529,7 +529,7 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		//$ionicSideMenuDelegate.canDragContent(true);
-		alert('Hi Inside gettingAllTests');
+		//alert('Hi Inside gettingAllTests');
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
@@ -550,7 +550,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 	$scope.$on('$ionicView.enter', function(){
 		//$ionicSideMenuDelegate.canDragContent(true);
 	// Any thing you can think of
-		alert('Hi Inside TestDetailsForStudent');
+		//alert('Hi Inside TestDetailsForStudent');
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
@@ -559,7 +559,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 		$scope.test_ins_guid = $routeParams.test_ins_guid;
 		//alert('Test Instance Guid '+$scope.showName);
 		PPODService.getStudentTestMarks($scope,sharedProperties);
-		alert('TIG '+$scope.test_ins_guid);
+		//alert('TIG '+$scope.test_ins_guid);
     }
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
@@ -578,7 +578,7 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 	$scope.$on('$ionicView.enter', function(){
 		// Any thing you can think of
 		//$ionicSideMenuDelegate.canDragContent(true);
-		alert('Hi Inside feesController');
+		//alert('Hi Inside feesController');
 		$scope.fnInit();
 	});
 	var ref = "";
