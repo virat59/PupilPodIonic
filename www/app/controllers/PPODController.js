@@ -355,6 +355,10 @@ app.directive('carouselItem', function($drag) {
 });
 
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q,$state){
+	$scope.$on('$ionicView.enter', function(){
+	// Any thing you can think of
+		alert('Hi Inside loginController');
+	});
 	$scope.instDis = true;
 	function fnInit(){
 		$scope.$emit('modelOffEvent', true);
@@ -412,6 +416,10 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 });
 
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state){
+	$scope.$on('$ionicView.enter', function(){
+	// Any thing you can think of
+		alert('Hi Inside changeStudent');
+	});
 	function fnInit(){
 		//$window.location.href = '#/mainLanding';
 		$state.go('eventmenu.mainLanding');
@@ -421,6 +429,10 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 });
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
+	$scope.$on('$ionicView.enter', function(){
+	// Any thing you can think of
+		alert('Hi Inside mainController');
+	});
 	function fnInit(){
 		var main_students_guid = myCache.get('main_students_guid');
 		var cache = myCache.get('studentName');
@@ -458,6 +470,10 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 });
 
 app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties){
+	$scope.$on('$ionicView.enter', function(){
+	// Any thing you can think of
+		alert('Hi Inside gettingAllTests');
+	});
 	function fnInit(){
 		PPODService.getStudentTestDetails($scope,sharedProperties);
 		//$scope.$emit('modelOffEvent', true);
@@ -466,6 +482,10 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 });
 
 app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams){
+	$scope.$on('$ionicView.enter', function(){
+	// Any thing you can think of
+		alert('Hi Inside TestDetailsForStudent');
+	});
 	function fnInit(){
 		//PPODService.getStudentTestDetails($scope,sharedProperties);
 		//$scope.$emit('modelOffEvent', true);
@@ -481,6 +501,10 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 
 
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties,$state){
+	$scope.$on('$ionicView.enter', function(){
+	// Any thing you can think of
+		alert('Hi Inside feesController');
+	});
 	var ref = "";
 	function fnInit(){
 		$scope.$emit('modelOffEvent', true);	
