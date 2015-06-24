@@ -18,80 +18,88 @@ app.config(function ($compileProvider) {
 app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 	.state('eventmenu', {
-      url: "/event",
-      abstract: true,
-      templateUrl: 'app/views/others/sidebar.html'
+		cache: false,
+		url: "/event",
+		abstract: true,
+		templateUrl: 'app/views/others/sidebar.html'
     })
 	.state('eventmenu.home', {
-      url: "/home",
-      views: {
-        'menuContent' :{
-          templateUrl: 'app/views/Home.html'
-        }
-      }
+		cache: false,
+		url: "/home",
+		views: {
+			'menuContent' :{
+			  templateUrl: 'app/views/Home.html'
+			}
+		}
     })
 	.state('eventmenu.login', {
-      url: "/login",
-      views: {
-        'menuContent' :{
-          templateUrl: 'app/views/others/login.html',
-		  controller: "loginController"
-        }
-      }
+		cache: false,
+		url: "/login",
+		views: {
+			'menuContent' :{
+				templateUrl: 'app/views/others/login.html',
+				controller: "loginController"
+			}
+		}
     })
 	.state('eventmenu.mainLanding', {
-      url: "/mainLanding",
-      views: {
-        'menuContent' :{
-          templateUrl: 'app/views/others/mainLanding.html',
-		  controller: "mainController"
-        }
-      }
+		cache: false,
+		url: "/mainLanding",
+		views: {
+			'menuContent' :{
+				templateUrl: 'app/views/others/mainLanding.html',
+				controller: "mainController"
+			}
+		}
     })
 	.state('eventmenu.exam_details', {
-      url: "/exam_details",
-      views: {
-        'menuContent' :{
-          templateUrl: 'app/views/others/exam_details.html',
-		  controller: "gettingAllTests"
-        }
-      }
+		cache: false,
+		url: "/exam_details",
+		views: {
+			'menuContent' :{
+				templateUrl: 'app/views/others/exam_details.html',
+				controller: "gettingAllTests"
+			}
+		}
     })
 	.state('eventmenu.fees', {
-      url: "/fees",
-      views: {
-        'menuContent' :{
-          templateUrl: 'app/views/others/fees.html',
-		  controller: "feesController"
-        }
-      }
+		cache: false,
+		url: "/fees",
+		views: {
+			'menuContent' :{
+				templateUrl: 'app/views/others/fees.html',
+				controller: "feesController"
+			}
+		}
     })
 	.state('eventmenu.paymentCallBack', {
-      url: "/paymentCallBack",
-      views: {
-        'menuContent' :{
-          templateUrl: 'app/views/others/paymentCallBack.html',
-		  controller: ""
-        }
-      }
+		cache: false,
+		url: "/paymentCallBack",
+		views: {
+			'menuContent' :{
+				templateUrl: 'app/views/others/paymentCallBack.html',
+				controller: ""
+			}
+		}
     })
 	.state('eventmenu.view_test_details', {
-      url: "/view_test_details",
-      views: {
-        'menuContent' :{
-          templateUrl: 'app/views/others/view_test_details.html',
-		  controller: "TestDetailsForStudent"
-        }
-      }
+		cache: false,
+		url: "/view_test_details",
+		views: {
+			'menuContent' :{
+				templateUrl: 'app/views/others/view_test_details.html',
+				controller: "TestDetailsForStudent"
+			}
+		}
     })
 	.state('eventmenu.change_student', {
-      url: "/change_student",
-      views: {
-        'menuContent' :{
-          templateUrl: 'app/views/others/change_student.html',
-		  controller: "changeStudent"
-        }
-      }
+		url: "/change_student",
+		views: {
+			'menuContent' :{
+				templateUrl: 'app/views/others/change_student.html',
+				controller: "changeStudent"
+			}
+		}
     })
 	$urlRouterProvider.otherwise("/event/home");
 }]);
