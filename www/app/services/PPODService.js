@@ -68,11 +68,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
 						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
-						//alert('Inserted');
+						alert('Inserted');
 					}
 					else{
 						transaction.executeSql('UPDATE tnet_login_details set field_value = ? WHERE field_key = ? ',[ field_value,field_key],nullHandler,errorHandlerQuery);
-						//alert('Updated');
+						alert('Updated');
 					}
 				}
 			},errorHandlerQuery);
@@ -164,21 +164,23 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				sharedProperties.setPassWord($scope.login.password);
 				sharedProperties.setAppId(data.app_id);
 				sharedProperties.setUserGuid(data.user_guid);
-				
-				$scope.login = true;
 				sharedProperties.setIsLogin(true);
-				$scope.loading = false;
-				$scope.students = data.studentDetails;
 				sharedProperties.setStudentSelectedGuid(data.studentDetails[0]['student_guid']);
 				sharedProperties.setStudentSelectedName(data.studentDetails[0]['name']);
+				alert('11111');
+				$scope.login = true;
+				$scope.loading = false;
+				$scope.students = data.studentDetails;
+				alert('22222');
 				myCache.put('students', data.studentDetails);
 				myCache.put('main_students_guid', data.studentDetails[0]['student_guid']);
+				alert('3333');
 				self.AddValueToDB($scope,'username',$scope.login.userName);
 				self.AddValueToDB($scope,'password',$scope.login.password);
 				self.AddValueToDB($scope,'instname',$scope.login.instName);
 				self.AddValueToDB($scope,'appid',data.app_id);
 				self.AddValueToDB($scope,'userguid',data.user_guid);
-				
+				alert('4444');
 				$scope.$emit('loginStatus', true);
 				alert('Transfer to eventmenu.mainLanding');
 				//$window.location.href = '#/mainLanding';
