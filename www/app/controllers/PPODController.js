@@ -35,18 +35,18 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	function bindEvents() {
-		//alert('Hi In BindEvents');
+		alert('Hi In BindEvents');
         //document.addEventListener('deviceready', onDeviceReady, false);
 		//$ionicSideMenuDelegate.canDragContent(false);
 		$ionicPlatform.ready(function(){
-			//alert('Hi Device Ready in PPODController');
+			alert('Hi Device Ready in PPODController');
 			onDeviceReady();
 		});
     };
 	
 	
 	function onDeviceReady() {
-		//alert('Alert onDeviceReady');
+		alert('Alert onDeviceReady');
 		//receivedEvent('deviceready');
 		PPODService.dbConnection($scope,sharedProperties);
     };
