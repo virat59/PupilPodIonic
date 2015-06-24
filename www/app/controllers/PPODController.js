@@ -358,7 +358,8 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		alert('Hi Inside loginController');
-		fnInit();
+		$scope.fnInit1();
+		$scope.fnInit();
 	});
 	$scope.login = {
 		instName: "",
@@ -369,6 +370,9 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		user_guid: ""
 	};
 	$scope.instDis = true;
+	$scope.fnInit1 = function(){
+		alert('fnInit1');
+	};
 	function fnInit(){
 		$scope.$emit('modelOffEvent', true);
 		if(sharedProperties.getIsLogin() == true){
