@@ -376,9 +376,9 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		var appId = sharedProperties.getAppId();
 		//alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
 		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
-			$scope.instName = instnameTemp;
-			$scope.userName = usernameTemp;
-			$scope.password = passwordTemp;
+			$scope.login.instName = instnameTemp;
+			$scope.login.userName = usernameTemp;
+			$scope.login.password = passwordTemp;
 			$scope.registration_key = regkey;
 			$scope.app_id = appId;
 			$scope.user_guid = 
@@ -393,20 +393,20 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		$scope.loading = true;
 		$scope.submitted = true;
 		$scope.registration_key = sharedProperties.getRegKey();
-		alert('Insit Name '+$scope.instName);
-		alert('Insit Name '+$scope.userName);
-		alert('Insit Name '+$scope.password);
-		if($scope.instName == "" || $scope.instName == null){
+		alert('Insit Name '+$scope.login.instName);
+		alert('Insit Name '+$scope.login.userName);
+		alert('Insit Name '+$scope.login.password);
+		if($scope.login.instName == "" || $scope.login.instName == null){
 			$scope.loading = false;
 			alert('Please enter Instance Name, Instance Name field can not be empty');
 			return false;
 		}
-		else if($scope.userName == "" || $scope.userName == null){
+		else if($scope.login.userName == "" || $scope.login.userName == null){
 			$scope.loading = false;
 			alert('Please enter User Name, User Name/id field can not be empty');
 			return false;
 		}
-		else if($scope.password == "" || $scope.password == null){
+		else if($scope.login.password == "" || $scope.login.password == null){
 			$scope.loading = false;
 			alert('Please enter password, password field can not be empty');
 			return false;
