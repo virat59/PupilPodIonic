@@ -76,14 +76,23 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	$rootScope.$on('loginStatus',function(event,args){
-		alert('loginStatus Event Occured '+args);
-		if(args){
-			$scope.loginTrue = true;
+		if(args.status === true)
+			alert('loginStatus Event Occured True 11');
+		else
+			alert('loginStatus Event Occured False 11');
+		
+		if(args.status == true)
+			alert('loginStatus Event Occured True 22');
+		else
+			alert('loginStatus Event Occured False 22');
+		
+		if(args.status){
+			$scope.loginTrue = false;
 			$scope.students = myCache.get('students');
 			$scope.student_name = sharedProperties.getStudentSelectedName();
 		}
 		else{
-			$scope.loginTrue = false;
+			$scope.loginTrue = true;
 		}
 	});
 	
@@ -489,7 +498,8 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		// Any thing you can think of
 		//alert('Hi Inside mainController');
 		//$ionicSideMenuDelegate.canDragContent(false);
-		$scope.$emit('loginStatus', true);
+		var param = {"status": true};
+		$scope.$emit('loginStatus', param);
 		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
@@ -621,7 +631,8 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 	$scope.$on('$ionicView.enter', function(){
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.spinning = true;
-		$scope.$emit('loginStatus', false);
+		var param = {"status": false};
+		$scope.$emit('loginStatus', param);
 		//$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
