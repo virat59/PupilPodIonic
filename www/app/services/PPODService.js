@@ -187,7 +187,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			else{
 				$scope.instDis = false;
 				$scope.loading = false;
-				alert('Wrong User Name or Password, Please try again');
+				alert('Wrong User Name or Password, Please try again '+data.reason);
 			}
 		})
 		.error(function(data, status, headers, config){
