@@ -360,11 +360,11 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	// Any thing you can think of
 		//alert('Hi Inside loginController');
 		//$scope.fnInit1();
-		$ionicSideMenuDelegate.canDragContent(false);
+		//$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
-      $ionicSideMenuDelegate.canDragContent(true);
+      //$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.login = {
 		instName: "",
@@ -441,10 +441,10 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 
 app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
-		$ionicSideMenuDelegate.canDragContent(false);
+		//$ionicSideMenuDelegate.canDragContent(false);
 	});
 	$scope.$on('$ionicView.leave', function(){
-      $ionicSideMenuDelegate.canDragContent(true);
+      //$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
@@ -460,11 +460,11 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 	$scope.$on('$ionicView.enter', function($ionicSideMenuDelegate,$scope){
 	// Any thing you can think of
 		//alert('Hi Inside changeStudent');
-		$ionicSideMenuDelegate.canDragContent(false);
+		//$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
-      $ionicSideMenuDelegate.canDragContent(true);
+      //$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.fnInit = function(){
 		//$window.location.href = '#/mainLanding';
@@ -485,12 +485,12 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	$scope.$on('$ionicView.enter', function(){
 		// Any thing you can think of
 		//alert('Hi Inside mainController');
-		$ionicSideMenuDelegate.canDragContent(false);
+		//$ionicSideMenuDelegate.canDragContent(false);
 		$scope.$emit('loginStatus', true);
 		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
-      $ionicSideMenuDelegate.canDragContent(true);
+      //$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.fnInit = function(){
 		var main_students_guid = myCache.get('main_students_guid');
@@ -528,7 +528,7 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 	//$ionicSideMenuDelegate.canDragContent(true);
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
-		$ionicSideMenuDelegate.canDragContent(true);
+		//$ionicSideMenuDelegate.canDragContent(true);
 		alert('Hi Inside gettingAllTests');
 		$scope.fnInit();
 	});
@@ -548,7 +548,7 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams,$ionicSideMenuDelegate,$timeout){
 	
 	$scope.$on('$ionicView.enter', function(){
-		$ionicSideMenuDelegate.canDragContent(true);
+		//$ionicSideMenuDelegate.canDragContent(true);
 	// Any thing you can think of
 		alert('Hi Inside TestDetailsForStudent');
 		$scope.fnInit();
@@ -577,7 +577,7 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 	
 	$scope.$on('$ionicView.enter', function(){
 		// Any thing you can think of
-		$ionicSideMenuDelegate.canDragContent(true);
+		//$ionicSideMenuDelegate.canDragContent(true);
 		alert('Hi Inside feesController');
 		$scope.fnInit();
 	});
