@@ -281,8 +281,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			alert('Databases are not supported in this browser.');
 			return;
 		}
-		if(field_key == 'reg_id')
-			sharedProperties.setRegKey(field_value);
+		
 		if($scope.db == null || $scope.db == undefined || $scope.db == ''){
 			var shortName = 'tnet_pupilpod';
 			var version = '1.0';
@@ -297,7 +296,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			{
 				for (var i = 0; i < resultT1.rows.length; i++) {
 					var row = resultT1.rows.item(i);
-					//alert('Key '+row.field_key+' Value '+row.field_value);
+					alert('Delete Key '+row.field_key+' Value '+row.field_value);
 					if(row.field_key == 'reg_id'){
 						//sharedProperties.setRegKey(row.field_value);
 					}
@@ -318,12 +317,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					}
 				}
 			},errorHandlerQuery);
-			
-			transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, result)
-			{
-				
-			},errorHandlerQuery);
-			
 		},errorHandlerTransaction,nullHandler);
 		
 		sharedProperties.setInstName("");
