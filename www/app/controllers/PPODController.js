@@ -7,7 +7,9 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
-  
+	
+	$scope.students = {};
+	
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
@@ -20,6 +22,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	//$scope.student_name = "";
 	function initialize() {
+		alert('initialize');
 		$scope.ngViewClass = "modalOff";
 		if(sharedProperties.getIsLogin() == true){
 			//$window.location.href = '#/mainLanding';
@@ -445,15 +448,14 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 
 app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
+		alert('Home View');
 		$ionicSideMenuDelegate.canDragContent(false);
 	});
 	$scope.$on('$ionicView.leave', function(){
 		$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.doRefresh = function() {
-		console.log('Refreshing!');
 		$timeout( function() {
-		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
