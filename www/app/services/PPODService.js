@@ -177,6 +177,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				self.AddValueToDB($scope,'appid',data.app_id);
 				self.AddValueToDB($scope,'userguid',data.user_guid);
 				//$window.location.href = '#/mainLanding';
+				alert('Redirecting to eventmenu.mainLanding');
 				$state.go('eventmenu.mainLanding');
 				
 			}

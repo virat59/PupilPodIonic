@@ -388,7 +388,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		var instnameTemp = sharedProperties.getInstName();
 		var appId = sharedProperties.getAppId();
 		var userGuid = sharedProperties.getUserGuid();
-		//alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
+		alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
 		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
 			$scope.login.instName = instnameTemp;
 			$scope.login.userName = usernameTemp;
@@ -463,12 +463,12 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	$scope.fnInit = function(){
 		var main_students_guid = myCache.get('main_students_guid');
 		var cache = myCache.get('studentName');
-		//alert('main_students_guid '+main_students_guid);
+		alert('main_students_guid '+main_students_guid);
 		if(cache){
-			//alert('Already Exist');
+			alert('Already Exist');
 			if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 			{
-				//alert('Exist but for other student');
+				alert('Exist but for other student');
 				PPODService.getStudentDetails($scope,sharedProperties,myCache);
 			}
 			$scope.loading = false;
@@ -477,7 +477,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			$scope.studentDetails = myCache.get('studentDetails');
 		}
 		else{
-			//alert('Not Exist');
+			alert('Not Exist');
 			PPODService.getStudentDetails($scope,sharedProperties);
 		}
 		$scope.$emit('modelOffEvent', true);
