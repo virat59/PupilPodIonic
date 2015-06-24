@@ -24,7 +24,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	function initialize() {
 		alert('initialize');
 		$scope.ngViewClass = "modalOff";
-		if(sharedProperties.getIsLogin() == true){
+		if(sharedProperties.getIsLogin() == false){
 			//$window.location.href = '#/mainLanding';
 			$state.go('eventmenu.mainLanding');
 			return false;
@@ -385,7 +385,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	
 	$scope.fnInit = function(){
 		$scope.$emit('modelOffEvent', true);
-		if(sharedProperties.getIsLogin() == true){
+		if(sharedProperties.getIsLogin() == false){
 			//$window.location.href = '#/mainLanding';
 			$state.go('eventmenu.mainLanding');
 			return false;
