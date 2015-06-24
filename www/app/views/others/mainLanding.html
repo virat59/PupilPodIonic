@@ -21,5 +21,24 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="list card">
+			<div class="item item-avatar">
+				<img src="{{studentImage}}" alt="Student Image" height="50" width="50"/>
+				<h2>{{studentName}}</h2>
+				<!--<p>November 05, 1955</p>-->
+			</div>
+
+			<div class="item item-body">
+				<table class="table table-hover">
+					<tbody>
+						<tr ng-repeat="details in studentDetails">
+							<td>{{details.key}}</td>
+							<td>{{details.value}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</ion-content>
 </ion-view>
