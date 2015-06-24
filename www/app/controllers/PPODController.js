@@ -11,7 +11,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		console.log('Refreshing!');
 		$timeout( function() {
 		  //simulate async response
-		  $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 		  //Stop the ion-refresher from spinning
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
@@ -429,7 +429,13 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		}
 		PPODService.loginFunction($scope,sharedProperties);	  
 	};
-	//$scope.fnInit();
+	$scope.doRefresh = function() {
+		console.log('Refreshing!');
+		$timeout( function() {
+		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+		  $scope.$broadcast('scroll.refreshComplete');
+		}, 1000);
+    };
 });
 
 
@@ -440,6 +446,13 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 	$scope.$on('$ionicView.leave', function(){
       $ionicSideMenuDelegate.canDragContent(true);
     });
+	$scope.doRefresh = function() {
+		console.log('Refreshing!');
+		$timeout( function() {
+		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+		  $scope.$broadcast('scroll.refreshComplete');
+		}, 1000);
+    };
 });
 
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state,$ionicSideMenuDelegate){
@@ -458,6 +471,13 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		$state.go('eventmenu.mainLanding');
 		return false;
     }
+	$scope.doRefresh = function() {
+		console.log('Refreshing!');
+		$timeout( function() {
+		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+		  $scope.$broadcast('scroll.refreshComplete');
+		}, 1000);
+    };
 });
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate){
@@ -465,12 +485,12 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	$scope.$on('$ionicView.enter', function(){
 		// Any thing you can think of
 		//alert('Hi Inside mainController');
-		$ionicSideMenuDelegate.canDragContent(true);
+		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.$emit('loginStatus', true);
 		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
-      $ionicSideMenuDelegate.canDragContent(false);
+      $ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.fnInit = function(){
 		var main_students_guid = myCache.get('main_students_guid');
@@ -494,18 +514,14 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		}
 		$scope.$emit('modelOffEvent', true);
     }
-	$scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
-    $scope.onReload = function() {
-      console.warn('reload');
-      var deferred = $q.defer();
-      setTimeout(function() {
-        deferred.resolve(true);
-      }, 1000);
-      return deferred.promise;
+    $scope.doRefresh = function() {
+		console.log('Refreshing!');
+		$timeout( function() {
+		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+		  $scope.$broadcast('scroll.refreshComplete');
+		}, 1000);
     };
-	
-	//fnInit();
 });
 
 app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties,$ionicSideMenuDelegate){
@@ -520,7 +536,13 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 		PPODService.getStudentTestDetails($scope,sharedProperties);
 		//$scope.$emit('modelOffEvent', true);
     }
-	//fnInit();
+	$scope.doRefresh = function() {
+		console.log('Refreshing!');
+		$timeout( function() {
+		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+		  $scope.$broadcast('scroll.refreshComplete');
+		}, 1000);
+    };
 });
 
 app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams,$ionicSideMenuDelegate){
@@ -539,7 +561,13 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 		PPODService.getStudentTestMarks($scope,sharedProperties);
 		alert('TIG '+$scope.test_ins_guid);
     }
-	//fnInit();
+	$scope.doRefresh = function() {
+		console.log('Refreshing!');
+		$timeout( function() {
+		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+		  $scope.$broadcast('scroll.refreshComplete');
+		}, 1000);
+    };
 });
 
 
@@ -575,7 +603,13 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 		//$window.location.href = '#/paymentCallBack'; 
 		
 	}
-	//fnInit();
+	$scope.doRefresh = function() {
+		console.log('Refreshing!');
+		$timeout( function() {
+		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+		  $scope.$broadcast('scroll.refreshComplete');
+		}, 1000);
+    };
 });
 
 
