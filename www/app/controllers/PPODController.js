@@ -623,7 +623,7 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 		$scope.spinning = true;
 		var param = {"status": false};
 		$scope.$emit('loginStatus', param);
-		$scope.fnInit();
+		//$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
 		$ionicSideMenuDelegate.canDragContent(true);
