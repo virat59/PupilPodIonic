@@ -354,7 +354,7 @@ app.directive('carouselItem', function($drag) {
   };
 });
 
-app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q,$state){
+app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q,$state,$ionicSideMenuDelegate){
 	
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
@@ -430,15 +430,15 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 });
 
 
-app.controller('homeController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state){
+app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelegate){
 	$scope.$on('$ionicView.enter', function(){
 		$ionicSideMenuDelegate.canDragContent(false);
 	});
 });
 
-app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state){
+app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state,$ionicSideMenuDelegate){
 	//$ionicSideMenuDelegate.canDragContent(false);
-	$scope.$on('$ionicView.enter', function(){
+	$scope.$on('$ionicView.enter', function($ionicSideMenuDelegate,$scope){
 	// Any thing you can think of
 		//alert('Hi Inside changeStudent');
 		$ionicSideMenuDelegate.canDragContent(false);
@@ -451,7 +451,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
     }
 });
 
-app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
+app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate){
 	//$ionicSideMenuDelegate.canDragContent(true);
 	$scope.$on('$ionicView.enter', function(){
 		// Any thing you can think of
@@ -496,7 +496,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	//fnInit();
 });
 
-app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties){
+app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties,$ionicSideMenuDelegate){
 	//$ionicSideMenuDelegate.canDragContent(true);
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
@@ -511,7 +511,7 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 	//fnInit();
 });
 
-app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams){
+app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams,$ionicSideMenuDelegate){
 	
 	$scope.$on('$ionicView.enter', function(){
 		$ionicSideMenuDelegate.canDragContent(true);
@@ -533,7 +533,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 
 
 
-app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties,$state){
+app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties,$state,$ionicSideMenuDelegate){
 	
 	$scope.$on('$ionicView.enter', function(){
 		// Any thing you can think of
