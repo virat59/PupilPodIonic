@@ -1,5 +1,4 @@
 app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache,$ionicPlatform,$ionicSideMenuDelegate,$state){
-	$ionicSideMenuDelegate.canDragContent(false);
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	$scope.student_name = sharedProperties.getStudentSelectedName();
@@ -38,15 +37,16 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	function bindEvents() {
 		//alert('Hi In BindEvents');
         //document.addEventListener('deviceready', onDeviceReady, false);
+		//$ionicSideMenuDelegate.canDragContent(false);
 		$ionicPlatform.ready(function(){
-			//alert('Hi Device Ready in PPODController');
+			alert('Hi Device Ready in PPODController');
 			onDeviceReady();
 		});
     };
 	
 	
 	function onDeviceReady() {
-		//alert('Alert onDeviceReady');
+		alert('Alert onDeviceReady');
 		//receivedEvent('deviceready');
 		PPODService.dbConnection($scope,sharedProperties);
     };
@@ -355,11 +355,12 @@ app.directive('carouselItem', function($drag) {
 });
 
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q,$state){
-	$ionicSideMenuDelegate.canDragContent(false);
+	
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		//alert('Hi Inside loginController');
 		//$scope.fnInit1();
+		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
 	$scope.login = {
@@ -428,11 +429,19 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	//$scope.fnInit();
 });
 
+
+app.controller('homeController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state){
+	$scope.$on('$ionicView.enter', function(){
+		$ionicSideMenuDelegate.canDragContent(false);
+	});
+});
+
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state){
-	$ionicSideMenuDelegate.canDragContent(false);
+	//$ionicSideMenuDelegate.canDragContent(false);
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		//alert('Hi Inside changeStudent');
+		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
@@ -443,10 +452,11 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 });
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
-	$ionicSideMenuDelegate.canDragContent(true);
+	//$ionicSideMenuDelegate.canDragContent(true);
 	$scope.$on('$ionicView.enter', function(){
 		// Any thing you can think of
 		//alert('Hi Inside mainController');
+		$ionicSideMenuDelegate.canDragContent(true);
 		$scope.$emit('loginStatus', true);
 		$scope.fnInit();
 	});
@@ -487,9 +497,10 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 });
 
 app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties){
-	$ionicSideMenuDelegate.canDragContent(true);
+	//$ionicSideMenuDelegate.canDragContent(true);
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
+		$ionicSideMenuDelegate.canDragContent(true);
 		alert('Hi Inside gettingAllTests');
 		$scope.fnInit();
 	});
@@ -501,8 +512,9 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 });
 
 app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams){
-	$ionicSideMenuDelegate.canDragContent(true);
+	
 	$scope.$on('$ionicView.enter', function(){
+		$ionicSideMenuDelegate.canDragContent(true);
 	// Any thing you can think of
 		alert('Hi Inside TestDetailsForStudent');
 		$scope.fnInit();
@@ -522,9 +534,10 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 
 
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties,$state){
-	$ionicSideMenuDelegate.canDragContent(true);
+	
 	$scope.$on('$ionicView.enter', function(){
-	// Any thing you can think of
+		// Any thing you can think of
+		$ionicSideMenuDelegate.canDragContent(true);
 		alert('Hi Inside feesController');
 		$scope.fnInit();
 	});

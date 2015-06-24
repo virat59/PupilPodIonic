@@ -28,7 +28,8 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 		url: "/home",
 		views: {
 			'menuContent' :{
-			  templateUrl: 'app/views/Home.html'
+			  templateUrl: 'app/views/Home.html',
+			  controller: "homeController"
 			}
 		}
     })
