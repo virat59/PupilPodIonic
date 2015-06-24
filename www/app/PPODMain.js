@@ -19,7 +19,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 	$stateProvider
 	.state('eventmenu', {
 		cache: false,
-		url: "/event",
+		url: "/eventmenu",
 		abstract: true,
 		templateUrl: 'app/views/others/sidebar.html'
     })
@@ -101,8 +101,8 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 				controller: "changeStudent"
 			}
 		}
-    })
-	$urlRouterProvider.otherwise("/event/home");
+    });
+	$urlRouterProvider.otherwise("/eventmenu/home");
 }]);
 
 app.service('sharedProperties', function () {
