@@ -39,14 +39,14 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
         //document.addEventListener('deviceready', onDeviceReady, false);
 		//$ionicSideMenuDelegate.canDragContent(false);
 		$ionicPlatform.ready(function(){
-			alert('Hi Device Ready in PPODController');
+			//alert('Hi Device Ready in PPODController');
 			onDeviceReady();
 		});
     };
 	
 	
 	function onDeviceReady() {
-		alert('Alert onDeviceReady');
+		//alert('Alert onDeviceReady');
 		//receivedEvent('deviceready');
 		PPODService.dbConnection($scope,sharedProperties);
     };
@@ -363,6 +363,9 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
+	$scope.$on('$ionicView.leave', function(){
+      $ionicSideMenuDelegate.canDragContent(true);
+    });
 	$scope.login = {
 		instName: "",
 		userName: "",
@@ -434,6 +437,9 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 	$scope.$on('$ionicView.enter', function(){
 		$ionicSideMenuDelegate.canDragContent(false);
 	});
+	$scope.$on('$ionicView.leave', function(){
+      $ionicSideMenuDelegate.canDragContent(true);
+    });
 });
 
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state,$ionicSideMenuDelegate){
@@ -444,6 +450,9 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
+	$scope.$on('$ionicView.leave', function(){
+      $ionicSideMenuDelegate.canDragContent(true);
+    });
 	$scope.fnInit = function(){
 		//$window.location.href = '#/mainLanding';
 		$state.go('eventmenu.mainLanding');
@@ -460,15 +469,18 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		$scope.$emit('loginStatus', true);
 		$scope.fnInit();
 	});
+	$scope.$on('$ionicView.leave', function(){
+      $ionicSideMenuDelegate.canDragContent(false);
+    });
 	$scope.fnInit = function(){
 		var main_students_guid = myCache.get('main_students_guid');
 		var cache = myCache.get('studentName');
-		alert('main_students_guid '+main_students_guid);
+		//alert('main_students_guid '+main_students_guid);
 		if(cache){
-			alert('Already Exist');
+			//alert('Already Exist');
 			if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 			{
-				alert('Exist but for other student');
+				//alert('Exist but for other student');
 				PPODService.getStudentDetails($scope,sharedProperties,myCache);
 			}
 			$scope.loading = false;
@@ -477,7 +489,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			$scope.studentDetails = myCache.get('studentDetails');
 		}
 		else{
-			alert('Not Exist');
+			//alert('Not Exist');
 			PPODService.getStudentDetails($scope,sharedProperties);
 		}
 		$scope.$emit('modelOffEvent', true);
