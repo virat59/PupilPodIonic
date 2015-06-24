@@ -1,6 +1,7 @@
 app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache,$ionicPlatform,$ionicSideMenuDelegate,$state,$timeout){
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	$scope.loginTrue = sharedProperties.getIsLogin();
+	
 	$scope.student_name = sharedProperties.getStudentSelectedName();
 	
 	$scope.toggleLeft = function() {
@@ -16,7 +17,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
 	};
-	
 	
 	//$scope.student_name = "";
 	function initialize() {
@@ -76,16 +76,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	$rootScope.$on('loginStatus',function(event,args){
-		if(args.status === true)
-			alert('loginStatus Event Occured True 11');
-		else
-			alert('loginStatus Event Occured False 11');
-		
-		if(args.status == true)
-			alert('loginStatus Event Occured True 22');
-		else
-			alert('loginStatus Event Occured False 22');
-		
 		if(args.status){
 			$scope.loginTrue = false;
 			$scope.students = myCache.get('students');
@@ -633,7 +623,7 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 		$scope.spinning = true;
 		var param = {"status": false};
 		$scope.$emit('loginStatus', param);
-		//$scope.fnInit();
+		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
 		$ionicSideMenuDelegate.canDragContent(true);

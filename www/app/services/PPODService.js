@@ -163,7 +163,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				sharedProperties.setPassWord(data.password);
 				sharedProperties.setAppId(data.app_id);
 				sharedProperties.setUserGuid(data.user_guid);
-				sharedProperties.setIsLogin(true);
+				sharedProperties.setIsLogin(false);
 				sharedProperties.setStudentSelectedGuid(data.studentDetails[0]['student_guid']);
 				sharedProperties.setStudentSelectedName(data.studentDetails[0]['name']);
 				$scope.login = true;
@@ -324,7 +324,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		sharedProperties.setPassWord("");
 		//sharedProperties.setAppId("");
 		//sharedProperties.setUserGuid("");
-		sharedProperties.setIsLogin(false);
+		sharedProperties.setIsLogin(true);
 		sharedProperties.setStudentSelectedGuid("");
 		sharedProperties.setStudentSelectedName("");
 		$state.go('eventmenu.login');
