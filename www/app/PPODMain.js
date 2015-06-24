@@ -101,6 +101,15 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 				controller: "changeStudent"
 			}
 		}
+    })
+	.state('eventmenu.logout', {
+		url: "/logout",
+		views: {
+			'menuContent' :{
+				templateUrl: 'app/views/others/logout.html',
+				controller: "logoutController"
+			}
+		}
     });
 	$urlRouterProvider.otherwise("/eventmenu/home");
 }]);

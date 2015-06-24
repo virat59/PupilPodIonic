@@ -611,3 +611,15 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 });
 
 
+
+app.controller('logoutController',function($scope,PPODService,sharedProperties,$ionicSideMenuDelegate){
+	$scope.$on('$ionicView.enter', function(){
+		$scope.spinning = true;
+	});
+	$scope.$on('$ionicView.leave', function(){
+		$scope.spinning = false;
+    });
+	$scope.fnInit = function(){
+		PPODService.removeLocalEntry($scope,sharedProperties);
+    }
+});

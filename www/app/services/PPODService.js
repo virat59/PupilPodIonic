@@ -275,4 +275,65 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			return false;
 		});
 	};
+	
+	this.removeLocalEntry = function($scope,sharedProperties){
+		if (!window.openDatabase) {
+			alert('Databases are not supported in this browser.');
+			return;
+		}
+		if(field_key == 'reg_id')
+			sharedProperties.setRegKey(field_value);
+		if($scope.db == null || $scope.db == undefined || $scope.db == ''){
+			var shortName = 'tnet_pupilpod';
+			var version = '1.0';
+			var displayName = 'Tnet_Pupilpod';
+			var maxSize = 65535;
+			db = $window.openDatabase(shortName, version, displayName,maxSize);
+			db.transaction(createTable,errorHandlerTransaction,nullHandler);
+			$scope.db = db;		
+		}
+		$scope.db.transaction(function(transaction) {
+			transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, resultT1)
+			{
+				for (var i = 0; i < resultT1.rows.length; i++) {
+					var row = resultT1.rows.item(i);
+					//alert('Key '+row.field_key+' Value '+row.field_value);
+					if(row.field_key == 'reg_id'){
+						//sharedProperties.setRegKey(row.field_value);
+					}
+					else if(row.field_key == 'username'){
+						transaction.executeSql('DELETE FROM tnet_login_details WHERE field_key = ? ',[row.field_key],nullHandler,errorHandlerQuery);
+					}
+					else if(row.field_key == 'password'){
+						transaction.executeSql('DELETE FROM tnet_login_details WHERE field_key = ? ',[row.field_key],nullHandler,errorHandlerQuery);
+					}
+					else if(row.field_key == 'instname'){
+						transaction.executeSql('DELETE FROM tnet_login_details WHERE field_key = ? ',[row.field_key],nullHandler,errorHandlerQuery);
+					}
+					else if(row.field_key == 'appid'){
+						//sharedProperties.setAppId(row.field_value);
+					}
+					else if(row.field_key == 'userguid'){
+						//sharedProperties.setUserGuid(row.field_value);
+					}
+				}
+			},errorHandlerQuery);
+			
+			transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, result)
+			{
+				
+			},errorHandlerQuery);
+			
+		},errorHandlerTransaction,nullHandler);
+		
+		sharedProperties.setInstName("");
+		sharedProperties.setUserName("");
+		sharedProperties.setPassWord("");
+		//sharedProperties.setAppId("");
+		//sharedProperties.setUserGuid("");
+		sharedProperties.setIsLogin(false);
+		sharedProperties.setStudentSelectedGuid("");
+		sharedProperties.setStudentSelectedName("");
+		$state.go('eventmenu.login');
+	};
 });
