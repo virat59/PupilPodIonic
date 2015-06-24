@@ -5,7 +5,7 @@
  */
 
 
-app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope,$state){    
+app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope,$state,myCache){    
 	this.dbConnection = function($scope,sharedProperties){
 		var shortName = 'tnet_pupilpod';
 		var version = '1.0';
@@ -146,7 +146,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		return false;
 	};
 	
-	this.loginFunction = function ($scope,sharedProperties,myCache){
+	this.loginFunction = function ($scope,sharedProperties){
 		var self = this;
 		var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
