@@ -154,13 +154,14 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
                 "parameters":[null,{'instName' : $scope.login.instName,'userName' : $scope.login.userName,'password': $scope.login.password,'registration_key' : $scope.login.registration_key,'app_id' : $scope.login.app_id,'user_guid' : $scope.login.user_guid}]
                 });
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-		var tempUrl = "http://"+$scope.instName+"/"+url;
+		var tempUrl = "http://"+$scope.login.instName+"/"+url;
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {		
 			$scope.loading = false;
 			if(data.valid == 'VALID'){
-				sharedProperties.setInstName($scope.instName);
-				sharedProperties.setUserName($scope.userName);
-				sharedProperties.setPassWord($scope.password);
+				alert('VALID loginFunction');
+				sharedProperties.setInstName($scope.login.instName);
+				sharedProperties.setUserName($scope.login.userName);
+				sharedProperties.setPassWord($scope.login.password);
 				sharedProperties.setAppId(data.app_id);
 				sharedProperties.setUserGuid(data.user_guid);
 				
@@ -172,9 +173,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				sharedProperties.setStudentSelectedName(data.studentDetails[0]['name']);
 				myCache.put('students', data.studentDetails);
 				myCache.put('main_students_guid', data.studentDetails[0]['student_guid']);
-				self.AddValueToDB($scope,'username',$scope.userName);
-				self.AddValueToDB($scope,'password',$scope.password);
-				self.AddValueToDB($scope,'instname',$scope.instName);
+				self.AddValueToDB($scope,'username',$scope.login.userName);
+				self.AddValueToDB($scope,'password',$scope.login.password);
+				self.AddValueToDB($scope,'instname',$scope.login.instName);
 				self.AddValueToDB($scope,'appid',data.app_id);
 				self.AddValueToDB($scope,'userguid',data.user_guid);
 				

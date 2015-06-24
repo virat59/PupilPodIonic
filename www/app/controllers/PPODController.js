@@ -360,6 +360,14 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		alert('Hi Inside loginController');
 		fnInit();
 	});
+	$scope.login = {
+		instName: "",
+		userName: "",
+		password: "",
+		registration_key: "",
+		app_id: "",
+		user_guid: ""
+	};
 	$scope.instDis = true;
 	function fnInit(){
 		$scope.$emit('modelOffEvent', true);
@@ -369,22 +377,14 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 			return false;
 		}
 		$scope.loading = true;
-		$scope.login = {
-			instName: "",
-			userName: "",
-			password: "",
-			registration_key: "",
-			app_id: "",
-			user_guid: ""
-		};
-		
+					
 		var regkey = sharedProperties.getRegKey();
 		var usernameTemp = sharedProperties.getUserName();
 		var passwordTemp = sharedProperties.getPassWord();
 		var instnameTemp = sharedProperties.getInstName();
 		var appId = sharedProperties.getAppId();
 		var userGuid = sharedProperties.getUserGuid();
-		//alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
+		alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
 		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
 			$scope.login.instName = instnameTemp;
 			$scope.login.userName = usernameTemp;
