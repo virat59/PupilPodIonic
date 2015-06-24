@@ -180,6 +180,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				self.AddValueToDB($scope,'userguid',data.user_guid);
 				
 				$scope.$emit('loginStatus', true);
+				alert('Transfer to eventmenu.mainLanding');
 				//$window.location.href = '#/mainLanding';
 				$state.go('eventmenu.mainLanding');
 				

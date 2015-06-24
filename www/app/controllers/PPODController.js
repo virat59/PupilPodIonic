@@ -445,18 +445,19 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
 	$scope.$on('$ionicView.enter', function(){
-	// Any thing you can think of
+		// Any thing you can think of
 		alert('Hi Inside mainController');
+		$scope.fnInit();
 	});
-	function fnInit(){
+	$scope.fnInit = function(){
 		var main_students_guid = myCache.get('main_students_guid');
 		var cache = myCache.get('studentName');
-		//alert('main_students_guid '+main_students_guid);
+		alert('main_students_guid '+main_students_guid);
 		if(cache){
 			//alert('Already Exist');
 			if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 			{
-				//alert('Exist but for other student');
+				alert('Exist but for other student');
 				PPODService.getStudentDetails($scope,sharedProperties,myCache);
 			}
 			$scope.loading = false;
