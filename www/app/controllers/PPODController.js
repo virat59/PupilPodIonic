@@ -76,10 +76,15 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	$rootScope.$on('loginStatus',function(event,args){
-		//alert('loginStatus Event Occured');
-		$scope.loginTrue = true;
-		$scope.students = myCache.get('students');
-		$scope.student_name = sharedProperties.getStudentSelectedName();
+		alert('loginStatus Event Occured');
+		if(args == true){
+			$scope.loginTrue = true;
+			$scope.students = myCache.get('students');
+			$scope.student_name = sharedProperties.getStudentSelectedName();
+		}
+		else{
+			$scope.loginTrue = false;
+		}
 	});
 	
 	$rootScope.$on('modelOffEvent',function(event){
@@ -616,6 +621,8 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 	$scope.$on('$ionicView.enter', function(){
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.spinning = true;
+		$scope.$emit('loginStatus', false);
+		//$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
 		$ionicSideMenuDelegate.canDragContent(true);
