@@ -107,7 +107,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 						{
 							for (var i = 0; i < resultT1.rows.length; i++) {
 								var row = resultT1.rows.item(i);
-								//alert('Key '+row.field_key+' Value '+row.field_value);
+								alert('Key '+row.field_key+' Value '+row.field_value);
 								if(row.field_key == 'reg_id'){
 									sharedProperties.setRegKey(row.field_value);
 								}
