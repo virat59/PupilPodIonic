@@ -1,4 +1,5 @@
 app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache,$ionicPlatform,$ionicSideMenuDelegate,$state){
+	$ionicSideMenuDelegate.canDragContent(false);
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	$scope.student_name = sharedProperties.getStudentSelectedName();
@@ -38,14 +39,14 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 		//alert('Hi In BindEvents');
         //document.addEventListener('deviceready', onDeviceReady, false);
 		$ionicPlatform.ready(function(){
-			alert('Hi Device Ready in PPODController');
+			//alert('Hi Device Ready in PPODController');
 			onDeviceReady();
 		});
     };
 	
 	
 	function onDeviceReady() {
-		alert('Alert onDeviceReady');
+		//alert('Alert onDeviceReady');
 		//receivedEvent('deviceready');
 		PPODService.dbConnection($scope,sharedProperties);
     };
@@ -75,12 +76,10 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	$rootScope.$on('loginStatus',function(event,args){
-		alert('loginStatus Event Occured');
-		$scope.loginTrue = args;
+		//alert('loginStatus Event Occured');
+		$scope.loginTrue = true;
 		$scope.students = myCache.get('students');
 		$scope.student_name = sharedProperties.getStudentSelectedName();
-		
-		
 	});
 	
 	$rootScope.$on('modelOffEvent',function(event){
@@ -356,6 +355,7 @@ app.directive('carouselItem', function($drag) {
 });
 
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q,$state){
+	$ionicSideMenuDelegate.canDragContent(false);
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		//alert('Hi Inside loginController');
@@ -429,9 +429,10 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 });
 
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state){
+	$ionicSideMenuDelegate.canDragContent(false);
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
-		alert('Hi Inside changeStudent');
+		//alert('Hi Inside changeStudent');
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
@@ -442,6 +443,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 });
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
+	$ionicSideMenuDelegate.canDragContent(true);
 	$scope.$on('$ionicView.enter', function(){
 		// Any thing you can think of
 		//alert('Hi Inside mainController');
@@ -485,6 +487,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 });
 
 app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties){
+	$ionicSideMenuDelegate.canDragContent(true);
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		alert('Hi Inside gettingAllTests');
@@ -498,6 +501,7 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 });
 
 app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams){
+	$ionicSideMenuDelegate.canDragContent(true);
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		alert('Hi Inside TestDetailsForStudent');
@@ -518,6 +522,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 
 
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties,$state){
+	$ionicSideMenuDelegate.canDragContent(true);
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		alert('Hi Inside feesController');
@@ -528,7 +533,7 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 		$scope.$emit('modelOffEvent', true);	
     }
 	$scope.makePayment = function(payment_id){
-		alert('Hi Inside makePayment '+payment_id);
+		//alert('Hi Inside makePayment '+payment_id);
 		ref = window.open('http://thoughtnet.pupilpod.in/paymenttest.php', '_blank', 'location=no');
         ref.addEventListener('loadstart', function(event) {  });
         ref.addEventListener('loadstop', function(event) {  
