@@ -68,11 +68,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
 						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
-						alert('Inserted');
+						alert('Inserted Key '+field_key+' value '+field_value);
 					}
 					else{
 						transaction.executeSql('UPDATE tnet_login_details set field_value = ? WHERE field_key = ? ',[ field_value,field_key],nullHandler,errorHandlerQuery);
-						alert('Updated');
+						alert('Updated Key '+field_key+' value '+field_value);
 					}
 				}
 			},errorHandlerQuery);
@@ -159,9 +159,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			$scope.loading = false;
 			if(data.valid == 'VALID'){
 				alert('VALID loginFunction');
-				sharedProperties.setInstName($scope.login.instName);
-				sharedProperties.setUserName($scope.login.userName);
-				sharedProperties.setPassWord($scope.login.password);
+				sharedProperties.setInstName(data.instName);
+				sharedProperties.setUserName(data.userName);
+				sharedProperties.setPassWord(data.password);
 				sharedProperties.setAppId(data.app_id);
 				sharedProperties.setUserGuid(data.user_guid);
 				sharedProperties.setIsLogin(true);
@@ -175,9 +175,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				myCache.put('students', data.studentDetails);
 				myCache.put('main_students_guid', data.studentDetails[0]['student_guid']);
 				alert('3333');
-				self.AddValueToDB($scope,'username',$scope.login.userName);
-				self.AddValueToDB($scope,'password',$scope.login.password);
-				self.AddValueToDB($scope,'instname',$scope.login.instName);
+				self.AddValueToDB($scope,'username',data.userName);
+				self.AddValueToDB($scope,'password',data.password);
+				self.AddValueToDB($scope,'instname',data.instName);
 				self.AddValueToDB($scope,'appid',data.app_id);
 				self.AddValueToDB($scope,'userguid',data.user_guid);
 				alert('4444');
