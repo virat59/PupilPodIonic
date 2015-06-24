@@ -358,7 +358,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		alert('Hi Inside loginController');
-		$scope.fnInit1();
+		//$scope.fnInit1();
 		$scope.fnInit();
 	});
 	$scope.login = {
@@ -370,10 +370,8 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		user_guid: ""
 	};
 	$scope.instDis = true;
-	$scope.fnInit1 = function(){
-		alert('fnInit1');
-	};
-	function fnInit(){
+	
+	$scope.fnInit = function(){
 		$scope.$emit('modelOffEvent', true);
 		if(sharedProperties.getIsLogin() == true){
 			//$window.location.href = '#/mainLanding';
@@ -427,10 +425,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		}
 		PPODService.loginFunction($scope,sharedProperties);	  
 	};
-	
-	
-	
-	fnInit();
+	//$scope.fnInit();
 });
 
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state){
