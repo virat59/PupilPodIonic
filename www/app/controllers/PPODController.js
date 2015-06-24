@@ -367,6 +367,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	// Any thing you can think of
 		//alert('Hi Inside loginController');
 		//$scope.fnInit1();
+		$scope.loading = true;
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
