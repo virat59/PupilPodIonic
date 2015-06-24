@@ -24,7 +24,41 @@
 		<script src="app/services/PPODService.js"></script>
 	</head>
 	<body ng-controller="PPODController">
-		<ion-nav-view animation="slide-left-right"></ion-nav-view>
+		<ion-side-menus>
+			<ion-side-menu-content>
+				<ion-nav-bar class="bar-assertive">
+					<!--<ion-nav-back-button></ion-nav-back-button>-->
+					<ion-nav-buttons side="left">
+						<button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
+					</ion-nav-buttons>
+				</ion-nav-bar>
+
+				<ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+			</ion-side-menu-content> 
+			
+			<ion-side-menu side="left">
+				<ion-header-bar class="bar-assertive">
+					<h1 class="title">Virat Joshi</h1>
+				</ion-header-bar>
+				<ion-content>
+					<ul class="list">
+					  <li>
+						<a class="item" menu-close nav-clear href="#/eventmenu/mainLanding">Home</a>
+					  </li>
+					  <li>
+						<a class="item" menu-close href="#/eventmenu/exam_details">Examination</a>
+					  </li>
+					  <li>
+						<a class="item" menu-close href="#/eventmenu/fees">Fees</a>
+					  </li>
+					</ul>
+					<div class="item item-divider">
+					  Change Student
+					</div>
+					<dropdown class="ng-isolate-scope" selected="student" property="name" list="students" placeholder="Select Student"></dropdown>
+				</ion-content>
+			</ion-side-menu>
+		</ion-side-menus>
 	</body>
 	</html>
     

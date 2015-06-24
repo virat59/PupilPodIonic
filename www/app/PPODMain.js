@@ -19,13 +19,13 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 	$stateProvider
 	.state('eventmenu', {
 		cache: false,
-		url: "/event",
+		url: "/eventmenu",
 		abstract: true,
 		templateUrl: 'app/views/others/sidebar.html'
     })
 	.state('eventmenu.home', {
 		cache: false,
-		url: "/home",
+		url: "/eventmenu/home",
 		views: {
 			'menuContent' :{
 			  templateUrl: 'app/views/Home.html',
@@ -35,7 +35,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
     })
 	.state('eventmenu.login', {
 		cache: false,
-		url: "/login",
+		url: "/eventmenu/login",
 		views: {
 			'menuContent' :{
 				templateUrl: 'app/views/others/login.html',
@@ -45,7 +45,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
     })
 	.state('eventmenu.mainLanding', {
 		cache: false,
-		url: "/mainLanding",
+		url: "/eventmenu/mainLanding",
 		views: {
 			'menuContent' :{
 				templateUrl: 'app/views/others/mainLanding.html',
@@ -55,7 +55,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
     })
 	.state('eventmenu.exam_details', {
 		cache: false,
-		url: "/exam_details",
+		url: "/eventmenu/exam_details",
 		views: {
 			'menuContent' :{
 				templateUrl: 'app/views/others/exam_details.html',
@@ -65,7 +65,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
     })
 	.state('eventmenu.fees', {
 		cache: false,
-		url: "/fees",
+		url: "/eventmenu/fees",
 		views: {
 			'menuContent' :{
 				templateUrl: 'app/views/others/fees.html',
@@ -75,7 +75,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
     })
 	.state('eventmenu.paymentCallBack', {
 		cache: false,
-		url: "/paymentCallBack",
+		url: "/eventmenu/paymentCallBack",
 		views: {
 			'menuContent' :{
 				templateUrl: 'app/views/others/paymentCallBack.html',
@@ -85,7 +85,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
     })
 	.state('eventmenu.view_test_details', {
 		cache: false,
-		url: "/view_test_details",
+		url: "/eventmenu/view_test_details",
 		views: {
 			'menuContent' :{
 				templateUrl: 'app/views/others/view_test_details.html',
@@ -94,7 +94,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 		}
     })
 	.state('eventmenu.change_student', {
-		url: "/change_student",
+		url: "/eventmenu/change_student",
 		views: {
 			'menuContent' :{
 				templateUrl: 'app/views/others/change_student.html',
@@ -102,7 +102,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 			}
 		}
     })
-	$urlRouterProvider.otherwise("/event/home");
+	$urlRouterProvider.otherwise("/eventmenu/home");
 }]);
 
 app.service('sharedProperties', function () {
