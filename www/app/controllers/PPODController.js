@@ -75,6 +75,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	$rootScope.$on('loginStatus',function(event,args){
+		alert('loginStatus Event Occured');
 		$scope.loginTrue = args;
 		$scope.students = myCache.get('students');
 		$scope.student_name = sharedProperties.getStudentSelectedName();
@@ -357,7 +358,7 @@ app.directive('carouselItem', function($drag) {
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q,$state){
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
-		alert('Hi Inside loginController');
+		//alert('Hi Inside loginController');
 		//$scope.fnInit1();
 		$scope.fnInit();
 	});
@@ -386,7 +387,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		var instnameTemp = sharedProperties.getInstName();
 		var appId = sharedProperties.getAppId();
 		var userGuid = sharedProperties.getUserGuid();
-		alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
+		//alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
 		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
 			$scope.login.instName = instnameTemp;
 			$scope.login.userName = usernameTemp;
@@ -407,9 +408,6 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		$scope.login.registration_key = sharedProperties.getRegKey();
 		$scope.login.app_id = sharedProperties.getAppId();
 		$scope.login.user_guid = sharedProperties.getUserGuid();
-		alert('Insit Name '+$scope.login.instName);
-		alert('Insit Name '+$scope.login.userName);
-		alert('Insit Name '+$scope.login.password);
 		if($scope.login.instName == "" || $scope.login.instName == null){
 			$scope.loading = false;
 			alert('Please enter Instance Name, Instance Name field can not be empty');
@@ -446,18 +444,19 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
 	$scope.$on('$ionicView.enter', function(){
 		// Any thing you can think of
-		alert('Hi Inside mainController');
+		//alert('Hi Inside mainController');
+		$scope.$emit('loginStatus', true);
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
 		var main_students_guid = myCache.get('main_students_guid');
 		var cache = myCache.get('studentName');
-		alert('main_students_guid '+main_students_guid);
+		//alert('main_students_guid '+main_students_guid);
 		if(cache){
 			//alert('Already Exist');
 			if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 			{
-				alert('Exist but for other student');
+				//alert('Exist but for other student');
 				PPODService.getStudentDetails($scope,sharedProperties,myCache);
 			}
 			$scope.loading = false;
@@ -466,7 +465,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			$scope.studentDetails = myCache.get('studentDetails');
 		}
 		else{
-			alert('Not Exist');
+			//alert('Not Exist');
 			PPODService.getStudentDetails($scope,sharedProperties);
 		}
 		$scope.$emit('modelOffEvent', true);

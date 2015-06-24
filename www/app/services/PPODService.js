@@ -68,11 +68,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
 						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
-						alert('Inserted Key '+field_key+' value '+field_value);
+						//alert('Inserted Key '+field_key+' value '+field_value);
 					}
 					else{
 						transaction.executeSql('UPDATE tnet_login_details set field_value = ? WHERE field_key = ? ',[ field_value,field_key],nullHandler,errorHandlerQuery);
-						alert('Updated Key '+field_key+' value '+field_value);
+						//alert('Updated Key '+field_key+' value '+field_value);
 					}
 				}
 			},errorHandlerQuery);
@@ -86,7 +86,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	function successCallBack() { //mySharedService
-		alert('successCallBack');
+		//alert('successCallBack');
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
@@ -95,19 +95,19 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				};
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
-						alert('Entry Not Exist 11');
+						//alert('Entry Not Exist 11');
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
 							alert('Error '+err);
 						})
 					}
 					else{
-						alert('Entry Exist');
+						//alert('Entry Exist');
 						transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, resultT1)
 						{
 							for (var i = 0; i < resultT1.rows.length; i++) {
 								var row = resultT1.rows.item(i);
-								alert('Key '+row.field_key+' Value '+row.field_value);
+								//alert('Key '+row.field_key+' Value '+row.field_value);
 								if(row.field_key == 'reg_id'){
 									sharedProperties.setRegKey(row.field_value);
 								}
@@ -133,7 +133,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					}
 				}
 				else{
-					alert('Entry Not Exist 22');
+					//alert('Entry Not Exist 22');
 					$cordovaPush.register(androidConfig).then(function(resultPush) {
 					}, function(err) {
 						// Error
@@ -158,7 +158,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {		
 			$scope.loading = false;
 			if(data.valid == 'VALID'){
-				alert('VALID loginFunction');
 				sharedProperties.setInstName(data.instName);
 				sharedProperties.setUserName(data.userName);
 				sharedProperties.setPassWord(data.password);
@@ -167,22 +166,16 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				sharedProperties.setIsLogin(true);
 				sharedProperties.setStudentSelectedGuid(data.studentDetails[0]['student_guid']);
 				sharedProperties.setStudentSelectedName(data.studentDetails[0]['name']);
-				alert('11111');
 				$scope.login = true;
 				$scope.loading = false;
 				$scope.students = data.studentDetails;
-				alert('22222');
 				myCache.put('students', data.studentDetails);
 				myCache.put('main_students_guid', data.studentDetails[0]['student_guid']);
-				alert('3333');
 				self.AddValueToDB($scope,'username',data.userName);
 				self.AddValueToDB($scope,'password',data.password);
 				self.AddValueToDB($scope,'instname',data.instName);
 				self.AddValueToDB($scope,'appid',data.app_id);
 				self.AddValueToDB($scope,'userguid',data.user_guid);
-				alert('4444');
-				$scope.$emit('loginStatus', true);
-				alert('Transfer to eventmenu.mainLanding');
 				//$window.location.href = '#/mainLanding';
 				$state.go('eventmenu.mainLanding');
 				
