@@ -358,6 +358,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		alert('Hi Inside loginController');
+		fnInit();
 	});
 	$scope.instDis = true;
 	function fnInit(){
@@ -392,6 +393,9 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		$scope.loading = true;
 		$scope.submitted = true;
 		$scope.registration_key = sharedProperties.getRegKey();
+		alert('Insit Name '+$scope.instName);
+		alert('Insit Name '+$scope.userName);
+		alert('Insit Name '+$scope.password);
 		if($scope.instName == "" || $scope.instName == null){
 			$scope.loading = false;
 			alert('Please enter Instance Name, Instance Name field can not be empty');
