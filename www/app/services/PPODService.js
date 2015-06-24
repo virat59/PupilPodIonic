@@ -200,7 +200,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		});
     };
 	
-	this.getStudentDetails = function($scope,sharedProperties,myCache){
+	this.getStudentDetails = function($scope,sharedProperties){
 		var param = JSON.stringify({
                 "serviceName":"TnetMobileService", 
                 "methodName":"getStudentDetails",

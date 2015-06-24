@@ -394,7 +394,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 			$scope.login.registration_key = regkey;
 			$scope.login.app_id = appId;
 			$scope.login.user_guid = userGuid;
-			PPODService.loginFunction($scope,sharedProperties,myCache);
+			PPODService.loginFunction($scope,sharedProperties);
 		}
 		else{
 			$scope.loading = false;
@@ -434,13 +434,13 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		alert('Hi Inside changeStudent');
+		$scope.fnInit();
 	});
-	function fnInit(){
+	$scope.fnInit = function(){
 		//$window.location.href = '#/mainLanding';
 		$state.go('eventmenu.mainLanding');
 		return false;
     }
-	fnInit();
 });
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache){
@@ -467,7 +467,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		}
 		else{
 			alert('Not Exist');
-			PPODService.getStudentDetails($scope,sharedProperties,myCache);
+			PPODService.getStudentDetails($scope,sharedProperties);
 		}
 		$scope.$emit('modelOffEvent', true);
     }
@@ -482,27 +482,29 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
       return deferred.promise;
     };
 	
-	fnInit();
+	//fnInit();
 });
 
 app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties){
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		alert('Hi Inside gettingAllTests');
+		$scope.fnInit();
 	});
-	function fnInit(){
+	$scope.fnInit = function(){
 		PPODService.getStudentTestDetails($scope,sharedProperties);
 		//$scope.$emit('modelOffEvent', true);
     }
-	fnInit();
+	//fnInit();
 });
 
 app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams){
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		alert('Hi Inside TestDetailsForStudent');
+		$scope.fnInit();
 	});
-	function fnInit(){
+	$scope.fnInit = function(){
 		//PPODService.getStudentTestDetails($scope,sharedProperties);
 		//$scope.$emit('modelOffEvent', true);
 		$scope.test_ins_guid = $routeParams.test_ins_guid;
@@ -510,7 +512,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 		PPODService.getStudentTestMarks($scope,sharedProperties);
 		alert('TIG '+$scope.test_ins_guid);
     }
-	fnInit();
+	//fnInit();
 });
 
 
@@ -520,9 +522,10 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		alert('Hi Inside feesController');
+		$scope.fnInit();
 	});
 	var ref = "";
-	function fnInit(){
+	$scope.fnInit = function(){
 		$scope.$emit('modelOffEvent', true);	
     }
 	$scope.makePayment = function(payment_id){
@@ -543,7 +546,7 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 		//$window.location.href = '#/paymentCallBack'; 
 		
 	}
-	fnInit();
+	//fnInit();
 });
 
 
