@@ -22,7 +22,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	//$scope.student_name = "";
 	function initialize() {
-		alert('initialize');
+		//alert('initialize');
 		$scope.ngViewClass = "modalOff";
 		if(sharedProperties.getIsLogin() == false){
 			//$window.location.href = '#/mainLanding';
@@ -38,18 +38,18 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	function bindEvents() {
-		alert('Hi In BindEvents');
+		//alert('Hi In BindEvents');
         //document.addEventListener('deviceready', onDeviceReady, false);
 		//$ionicSideMenuDelegate.canDragContent(false);
 		$ionicPlatform.ready(function(){
-			alert('Hi Device Ready in PPODController');
+			//alert('Hi Device Ready in PPODController');
 			onDeviceReady();
 		});
     };
 	
 	
 	function onDeviceReady() {
-		alert('Alert onDeviceReady');
+		//alert('Alert onDeviceReady');
 		//receivedEvent('deviceready');
 		PPODService.dbConnection($scope,sharedProperties);
     };
@@ -448,7 +448,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 
 app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
-		alert('Home View');
+		//alert('Home View');
 		$ionicSideMenuDelegate.canDragContent(false);
 	});
 	$scope.$on('$ionicView.leave', function(){
@@ -625,7 +625,7 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 		$scope.spinning = true;
 		var param = {"status": false};
 		$scope.$emit('loginStatus', param);
-		//$scope.fnInit();
+		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
 		$ionicSideMenuDelegate.canDragContent(true);
