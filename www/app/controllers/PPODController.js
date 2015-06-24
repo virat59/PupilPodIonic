@@ -76,8 +76,8 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
     };
 	
 	$rootScope.$on('loginStatus',function(event,args){
-		alert('loginStatus Event Occured');
-		if(args == true){
+		alert('loginStatus Event Occured '+args);
+		if(args){
 			$scope.loginTrue = true;
 			$scope.students = myCache.get('students');
 			$scope.student_name = sharedProperties.getStudentSelectedName();
