@@ -1,22 +1,21 @@
 <ion-view view-title="Welcome">
 	<ion-content class="padding">
 		<ion-refresher on-refresh="doRefresh()"></ion-refresher>		
-		<div>
-			<div class="header_sub"><h4>Test Details<h4></div>
-			<table class="table table-hover">
-				<tbody>
-					<tr>
-						<td>{{termName}}</td>
-						<td></td>
-						<td>{{sectionName}}</td>
-					</tr>
-					<tr ng-repeat="details in studentTestDetails">
-						<td>{{details.test_name}}</td>
-						<td>{{details.test_code}}</td>
-						<td><a href="#/view_test_details/{{details.test_instance_guid}}"><i class="fa fa-plus-circle"></i></a></td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="card">
+			<div class="item item-avatar">
+				<h4>Test Details<h4>
+			</div>
+			<div class="item item-body">
+				<table>
+					<tbody>	
+						<tr ng-repeat="details in studentTestDetails">
+							<td><div class="col col-50">{{details.test_name}}</div></td>
+							<td><div class="col">{{details.test_code}}</div></td>
+							<td><div class="col"><a href="#/view_test_details/{{details.test_instance_guid}}"><i class="ion-plus-circled"></i></a></div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</ion-content>
 </ion-view>
