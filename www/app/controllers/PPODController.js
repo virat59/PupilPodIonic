@@ -147,7 +147,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	$rootScope.$on('studentChanged',function(event,args){
 		$scope.student_name = args['name'];
-		//myCache.put('main_students_guid', args['student_guid']);
+		myCache.put('main_students_guid', args['student_guid']);
 		//$window.location.href = '#/change_student';
 		$state.go('eventmenu.change_student');
 			return false;
@@ -328,7 +328,7 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function($ionicSideMenuDelegate,$scope){
 	// Any thing you can think of
-		//alert('Hi Inside changeStudent');
+		alert('Hi Inside changeStudent');
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
@@ -337,6 +337,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
     });
 	$scope.fnInit = function(){
 		//$window.location.href = '#/mainLanding';
+		$ionicSideMenuDelegate.toggleLeft();
 		$state.go('eventmenu.mainLanding');
 		return false;
     }
