@@ -353,9 +353,10 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
     };
 	//href="#/eventmenu/view_test_details/{{details.test_instance_guid}}"
 	$scope.goToDetails = function(tig){
-		var path = "/eventmenu/view_test_details?"+tig;
-		alert('Path '+path);
-		$location.path(path);
+		var path = "/eventmenu/view_test_details";
+		//alert('Path '+path);
+		var param = {'test_ins_guid':tig};
+		$state.go(path);
 	};
 });
 
