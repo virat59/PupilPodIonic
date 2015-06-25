@@ -146,7 +146,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	$rootScope.$on('studentChanged',function(event,args){
-		alert('studentChanged '+args['name']);
+		//alert('studentChanged '+args['name']);
 		$scope.student_name = args['name'];
 		$state.go('eventmenu.change_student');
 			return false;
@@ -316,7 +316,7 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
-		alert('Hi Inside changeStudent');
+		//alert('Hi Inside changeStudent');
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
@@ -326,7 +326,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 	$scope.fnInit = function(){
 		//$window.location.href = '#/mainLanding';
 		if($ionicSideMenuDelegate.isOpenLeft()){
-			alert('Left SideBar is On');
+			//alert('Left SideBar is On');
 			$ionicSideMenuDelegate.toggleLeft();
 		}
 		$state.go('eventmenu.mainLanding');
@@ -344,7 +344,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
 		// Any thing you can think of
-		alert('Hi Inside mainController');
+		//alert('Hi Inside mainController');
 		//$ionicSideMenuDelegate.canDragContent(false);
 		var param = {"status": true};
 		$scope.$emit('loginStatus', param);
@@ -357,12 +357,12 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	$scope.fnInit = function(){
 		var main_students_guid = myCache.get('main_students_guid');
 		var cache = myCache.get('studentName');
-		alert('main_students_guid '+main_students_guid);
+		//alert('main_students_guid '+main_students_guid);
 		if(cache){
-			alert('Already Exist');
+			//alert('Already Exist');
 			if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 			{
-				alert('Exist but for other student');
+				//alert('Exist but for other student');
 				PPODService.getStudentDetails($scope,sharedProperties,myCache);
 			}
 			$scope.loading = false;
@@ -371,7 +371,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			$scope.studentDetails = myCache.get('studentDetails');
 		}
 		else{
-			alert('Not Exist');
+			//alert('Not Exist');
 			PPODService.getStudentDetails($scope,sharedProperties);
 		}
 		$scope.$emit('modelOffEvent', true);
