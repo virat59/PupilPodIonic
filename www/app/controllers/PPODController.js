@@ -319,10 +319,12 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			{
 				PPODService.getStudentDetails($scope,sharedProperties,myCache);
 			}
-			$scope.loading = false;
-			$scope.studentName = myCache.get('studentName');
-			$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');;
-			$scope.studentDetails = myCache.get('studentDetails');
+			else{
+				$scope.loading = false;
+				$scope.studentName = myCache.get('studentName');
+				$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');;
+				$scope.studentDetails = myCache.get('studentDetails');
+			}
 		}
 		else{
 			PPODService.getStudentDetails($scope,sharedProperties);
@@ -338,7 +340,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
     };
 });
 
-app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties,$ionicSideMenuDelegate,$timeout,$location){
+app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties,$ionicSideMenuDelegate,$timeout,$state){
 	$scope.$on('$ionicView.enter', function(){
 		$scope.fnInit();
 	});
@@ -355,8 +357,8 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 	$scope.goToDetails = function(tig){
 		var path = "/eventmenu/view_test_details";
 		//alert('Path '+path);
-		var param = {'test_ins_guid':tig};
-		$state.go(path);
+		var param = {'test_ins_guid': tig};
+		$state.go(path,param);
 	};
 });
 
@@ -364,7 +366,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 	
 	$scope.$on('$ionicView.enter', function(){
 		alert('Hi TestDetailsForStudent');
-		$scope.fnInit();
+		//$scope.fnInit();
 	});
 	$scope.fnInit = function(){
 		$scope.test_ins_guid = $routeParams.test_ins_guid;
