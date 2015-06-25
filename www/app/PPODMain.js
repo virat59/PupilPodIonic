@@ -85,7 +85,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
     })
 	.state('eventmenu.view_test_details', {
 		cache: false,
-		url: "/view_test_details",
+		url: "/view_test_details?test_ins_guid",
 		views: {
 			'menuContent' :{
 				templateUrl: 'app/views/others/view_test_details.html',
@@ -125,6 +125,7 @@ app.service('sharedProperties', function () {
 	var app_id = '';
 	var student_guid = '';
 	var student_name = '';
+	var test_instance_guid = '';
 	return {
 		getRegKey: function() {
 			return reg_key;
@@ -185,6 +186,12 @@ app.service('sharedProperties', function () {
 		},
 		setStudentSelectedName: function(stuName) {
 			student_name = stuName;
+		},
+		getTestInstanceGuid: function(){
+			return test_instance_guid;
+		},
+		setTestInstanceGuid: function(testInsGuid){
+			test_instance_guid = testInsGuid;
 		}
 	};
 });

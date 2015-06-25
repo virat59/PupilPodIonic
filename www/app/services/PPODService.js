@@ -1,8 +1,7 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+*	This service belongs to Mobile Development
+*	author Virat Joshi
+**/
 
 
 app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope,$state,myCache){    
@@ -40,13 +39,10 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	function successInsert(error){
-		//login
-		//$window.location.href = '#/login';
-		//alert('Value Inserted');
 		return false;
 	};
 	
-	this.AddValueToDB = function($scope,field_key,field_value) { //
+	this.AddValueToDB = function($scope,field_key,field_value) { 
 		if (!window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
@@ -68,11 +64,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
 						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
-						//alert('Inserted Key '+field_key+' value '+field_value);
 					}
 					else{
 						transaction.executeSql('UPDATE tnet_login_details set field_value = ? WHERE field_key = ? ',[ field_value,field_key],nullHandler,errorHandlerQuery);
-						//alert('Updated Key '+field_key+' value '+field_value);
 					}
 				}
 			},errorHandlerQuery);
@@ -85,8 +79,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		return false;
 	};
 	
-	function successCallBack() { //mySharedService
-		//alert('successCallBack');
+	function successCallBack() { 
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
@@ -95,19 +88,16 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				};
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
-						//alert('Entry Not Exist 11');
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
 							alert('Error '+err);
 						})
 					}
 					else{
-						//alert('Entry Exist');
 						transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, resultT1)
 						{
 							for (var i = 0; i < resultT1.rows.length; i++) {
 								var row = resultT1.rows.item(i);
-								//alert('Key '+row.field_key+' Value '+row.field_value);
 								if(row.field_key == 'reg_id'){
 									sharedProperties.setRegKey(row.field_value);
 								}
@@ -128,15 +118,12 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 								}
 							}
 						},errorHandlerQuery);
-						//$window.location.href = '#/login';
 						$state.go('eventmenu.login');
 					}
 				}
 				else{
-					//alert('Entry Not Exist 22');
 					$cordovaPush.register(androidConfig).then(function(resultPush) {
 					}, function(err) {
-						// Error
 						alert('Error '+err);
 					})
 				}
@@ -156,7 +143,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 		var tempUrl = "http://"+$scope.login.instName+"/"+url;
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {		
-			$scope.loading = false;
 			if(data.valid == 'VALID'){
 				sharedProperties.setInstName(data.instName);
 				sharedProperties.setUserName(data.userName);
@@ -167,7 +153,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				sharedProperties.setStudentSelectedGuid(data.studentDetails[0]['student_guid']);
 				sharedProperties.setStudentSelectedName(data.studentDetails[0]['name']);
 				$scope.login = true;
-				$scope.loading = false;
 				$scope.students = data.studentDetails;
 				myCache.put('students', data.studentDetails);
 				myCache.put('main_students_guid', data.studentDetails[0]['student_guid']);
@@ -176,8 +161,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				self.AddValueToDB($scope,'instname',data.instName);
 				self.AddValueToDB($scope,'appid',data.app_id);
 				self.AddValueToDB($scope,'userguid',data.user_guid);
-				//$window.location.href = '#/mainLanding';
-				//alert('Redirecting to eventmenu.mainLanding');
 				$state.go('eventmenu.mainLanding');
 				
 			}
@@ -296,9 +279,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			{
 				for (var i = 0; i < resultT1.rows.length; i++) {
 					var row = resultT1.rows.item(i);
-					//alert('Delete Key '+row.field_key+' Value '+row.field_value);
 					if(row.field_key == 'reg_id'){
-						//sharedProperties.setRegKey(row.field_value);
 					}
 					else if(row.field_key == 'username'){
 						transaction.executeSql('DELETE FROM tnet_login_details WHERE field_key = ? ',[row.field_key],nullHandler,errorHandlerQuery);
@@ -310,10 +291,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 						transaction.executeSql('DELETE FROM tnet_login_details WHERE field_key = ? ',[row.field_key],nullHandler,errorHandlerQuery);
 					}
 					else if(row.field_key == 'appid'){
-						//sharedProperties.setAppId(row.field_value);
 					}
 					else if(row.field_key == 'userguid'){
-						//sharedProperties.setUserGuid(row.field_value);
 					}
 				}
 			},errorHandlerQuery);
@@ -322,8 +301,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		sharedProperties.setInstName("");
 		sharedProperties.setUserName("");
 		sharedProperties.setPassWord("");
-		//sharedProperties.setAppId("");
-		//sharedProperties.setUserGuid("");
 		sharedProperties.setIsLogin(true);
 		sharedProperties.setStudentSelectedGuid("");
 		sharedProperties.setStudentSelectedName("");

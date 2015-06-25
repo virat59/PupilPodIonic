@@ -1,3 +1,8 @@
+/**
+*	This service belongs to Mobile Development
+*	author Virat Joshi
+**/
+
 app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache,$ionicPlatform,$ionicSideMenuDelegate,$state,$timeout){
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	$scope.loginTrue = sharedProperties.getIsLogin();
@@ -14,19 +19,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
-		  //simulate async response
-		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
-		  //Stop the ion-refresher from spinning
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
 	};
 	
-	//$scope.student_name = "";
 	function initialize() {
-		//alert('initialize');
 		$scope.ngViewClass = "modalOff";
 		if(sharedProperties.getIsLogin() == false){
-			//$window.location.href = '#/mainLanding';
 			$state.go('eventmenu.mainLanding');
 			return false;
 		}	
@@ -39,46 +38,23 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	function bindEvents() {
-		//alert('Hi In BindEvents');
-        //document.addEventListener('deviceready', onDeviceReady, false);
-		//$ionicSideMenuDelegate.canDragContent(false);
 		$ionicPlatform.ready(function(){
-			//alert('Hi Device Ready in PPODController');
 			onDeviceReady();
 		});
     };
 	
-	
 	function onDeviceReady() {
-		//alert('Alert onDeviceReady');
-		//receivedEvent('deviceready');
 		PPODService.dbConnection($scope,sharedProperties);
     };
 	
 	$scope.swapeOn = function(){
-		//alert('swape on');
-		//return "blurOn";
 		$scope.ngViewClass = "modalOn";
 	};
 	
 	$scope.swapeOff = function(){
-		//alert('swape off');
-		//return "blurOff";
 		$scope.ngViewClass = "modalOff";
 	};
-	
-	function receivedEvent(id) {
-		//alert('Event Received '+id);
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    };
-	
+		
 	$rootScope.$on('loginStatus',function(event,args){
 		if(args.status){
 			$scope.loginTrue = false;
@@ -99,10 +75,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
-            //alert('registration ID = ' + notification.regid);
-			//alert('Hii Came');
 			PPODService.AddValueToDB($scope,'reg_id',notification.regid);
-			//$window.location.href = '#/login';
 			$state.go('eventmenu.login');
           }
           break;
@@ -146,7 +119,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	$rootScope.$on('studentChanged',function(event,args){
-		//alert('studentChanged '+args['name']);
 		$scope.student_name = args['name'];
 		$state.go('eventmenu.change_student');
 			return false;
@@ -169,7 +141,6 @@ app.run(function($rootScope) {
 		$rootScope.$broadcast("documentClicked", angular.element(e.target));
 	});
 });
-
 
 app.directive("dropdown", function($rootScope,sharedProperties) {
 	return {
@@ -216,7 +187,7 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 });
 
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q,$state,$ionicSideMenuDelegate,$timeout){
-	
+	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
 		$scope.loading = true;
 		$ionicSideMenuDelegate.canDragContent(false);
@@ -238,7 +209,6 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	$scope.fnInit = function(){
 		$scope.$emit('modelOffEvent', true);
 		if(sharedProperties.getIsLogin() == false){
-			//$window.location.href = '#/mainLanding';
 			$state.go('eventmenu.mainLanding');
 			return false;
 		}
@@ -250,7 +220,6 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		var instnameTemp = sharedProperties.getInstName();
 		var appId = sharedProperties.getAppId();
 		var userGuid = sharedProperties.getUserGuid();
-		//alert('Reg '+regkey+' Inst Name '+instnameTemp+' UserName '+usernameTemp+' password '+passwordTemp+' appId '+appId);
 		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
 			$scope.login.instName = instnameTemp;
 			$scope.login.userName = usernameTemp;
@@ -262,7 +231,6 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		}
 		else{
 			$scope.loading = false;
-			//alert('Else Part');
 		}
     }
 	$scope.submit = function(form) {
@@ -291,7 +259,6 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
-		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
@@ -300,7 +267,6 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 
 app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
-		//alert('Home View');
 		$ionicSideMenuDelegate.canDragContent(false);
 	});
 	$scope.$on('$ionicView.leave', function(){
@@ -315,8 +281,6 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
-	// Any thing you can think of
-		//alert('Hi Inside changeStudent');
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
@@ -324,9 +288,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.fnInit = function(){
-		//$window.location.href = '#/mainLanding';
 		if($ionicSideMenuDelegate.isOpenLeft()){
-			//alert('Left SideBar is On');
 			$ionicSideMenuDelegate.toggleLeft();
 		}
 		$state.go('eventmenu.mainLanding');
@@ -335,7 +297,6 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
-		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
@@ -343,26 +304,19 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
-		// Any thing you can think of
-		//alert('Hi Inside mainController');
-		//$ionicSideMenuDelegate.canDragContent(false);
 		var param = {"status": true};
 		$scope.$emit('loginStatus', param);
 		$scope.fnInit();
 		$scope.loading = true;
 	});
 	$scope.$on('$ionicView.leave', function(){
-      //$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.fnInit = function(){
 		var main_students_guid = myCache.get('main_students_guid');
 		var cache = myCache.get('studentName');
-		//alert('main_students_guid '+main_students_guid);
 		if(cache){
-			//alert('Already Exist');
 			if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 			{
-				//alert('Exist but for other student');
 				PPODService.getStudentDetails($scope,sharedProperties,myCache);
 			}
 			$scope.loading = false;
@@ -371,7 +325,6 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			$scope.studentDetails = myCache.get('studentDetails');
 		}
 		else{
-			//alert('Not Exist');
 			PPODService.getStudentDetails($scope,sharedProperties);
 		}
 		$scope.$emit('modelOffEvent', true);
@@ -380,67 +333,54 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
     $scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
-		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
 });
 
-app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties,$ionicSideMenuDelegate,$timeout){
-	//$ionicSideMenuDelegate.canDragContent(true);
+app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties,$ionicSideMenuDelegate,$timeout,$location){
 	$scope.$on('$ionicView.enter', function(){
-	// Any thing you can think of
-		//$ionicSideMenuDelegate.canDragContent(true);
-		//alert('Hi Inside gettingAllTests');
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
 		PPODService.getStudentTestDetails($scope,sharedProperties);
-		//$scope.$emit('modelOffEvent', true);
     }
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
-		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
+	//href="#/eventmenu/view_test_details/{{details.test_instance_guid}}"
+	$scope.goToDetails = function(tig){
+		var path = "/eventmenu/view_test_details/"+tig;
+		alert('Path '+path);
+		$location.path(path);
+	};
 });
 
 app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams,$ionicSideMenuDelegate,$timeout){
 	
 	$scope.$on('$ionicView.enter', function(){
-		//$ionicSideMenuDelegate.canDragContent(true);
-	// Any thing you can think of
-		//alert('Hi Inside TestDetailsForStudent');
+		alert('Hi TestDetailsForStudent');
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
-		//PPODService.getStudentTestDetails($scope,sharedProperties);
-		//$scope.$emit('modelOffEvent', true);
 		$scope.test_ins_guid = $routeParams.test_ins_guid;
 		alert('Test Instance Guid '+$scope.showName);
 		PPODService.getStudentTestMarks($scope,sharedProperties);
-		//alert('TIG '+$scope.test_ins_guid);
     }
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
-		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
 });
 
-
-
-
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties,$state,$ionicSideMenuDelegate,$timeout){
 	
 	$scope.$on('$ionicView.enter', function(){
-		// Any thing you can think of
-		//$ionicSideMenuDelegate.canDragContent(true);
-		//alert('Hi Inside feesController');
 		$scope.fnInit();
 	});
 	var ref = "";
@@ -448,7 +388,6 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 		$scope.$emit('modelOffEvent', true);	
     }
 	$scope.makePayment = function(payment_id){
-		//alert('Hi Inside makePayment '+payment_id);
 		ref = window.open('http://thoughtnet.pupilpod.in/paymenttest.php', '_blank', 'location=no');
         ref.addEventListener('loadstart', function(event) {  });
         ref.addEventListener('loadstop', function(event) {  
@@ -462,19 +401,14 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 			} 
 		});
 		ref.addEventListener('exit', function(event) { $state.go('eventmenu.paymentCallBack'); });
-		//$window.location.href = '#/paymentCallBack'; 
-		
 	}
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
-		  //$scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
 });
-
-
 
 app.controller('logoutController',function($scope,PPODService,sharedProperties,$ionicSideMenuDelegate){
 	$scope.$on('$ionicView.enter', function(){
