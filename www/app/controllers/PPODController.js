@@ -349,6 +349,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		var param = {"status": true};
 		$scope.$emit('loginStatus', param);
 		$scope.fnInit();
+		$scope.loading = true;
 	});
 	$scope.$on('$ionicView.leave', function(){
       //$ionicSideMenuDelegate.canDragContent(true);
