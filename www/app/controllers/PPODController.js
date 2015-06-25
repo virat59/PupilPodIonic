@@ -326,7 +326,7 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 });
 
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state,$ionicSideMenuDelegate,$timeout){
-	$scope.$on('$ionicView.enter', function($ionicSideMenuDelegate,$scope){
+	$scope.$on('$ionicView.enter', function(){
 	// Any thing you can think of
 		alert('Hi Inside changeStudent');
 		$ionicSideMenuDelegate.canDragContent(false);
@@ -353,7 +353,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
 		// Any thing you can think of
-		//alert('Hi Inside mainController');
+		alert('Hi Inside mainController');
 		//$ionicSideMenuDelegate.canDragContent(false);
 		var param = {"status": true};
 		$scope.$emit('loginStatus', param);
