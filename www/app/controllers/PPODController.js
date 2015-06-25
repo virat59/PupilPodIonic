@@ -305,10 +305,11 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout){
 	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
+		alert('Inside Main Controller');
 		var param = {"status": true};
 		$scope.$emit('loginStatus', param);
-		$scope.fnInit();
 		$scope.loading = true;
+		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
     });
@@ -318,9 +319,11 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		if(cache){
 			if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 			{
+				alert('Exist for other student');
 				PPODService.getStudentDetails($scope,sharedProperties);
 			}
 			else{
+				alert('Exist');
 				$scope.loading = false;
 				$scope.studentName = myCache.get('studentName');
 				$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');;
@@ -328,6 +331,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			}
 		}
 		else{
+			alert(' Not Exist');
 			PPODService.getStudentDetails($scope,sharedProperties);
 		}
     }
