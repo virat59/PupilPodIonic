@@ -148,8 +148,6 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	$rootScope.$on('studentChanged',function(event,args){
 		alert('studentChanged '+args['name']);
 		$scope.student_name = args['name'];
-		myCache.put('main_students_guid', args['student_guid']);
-		//$window.location.href = '#/change_student';
 		$state.go('eventmenu.change_student');
 			return false;
 	});
@@ -203,15 +201,7 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 			};
 
 			$rootScope.$on("documentClicked", function(inner, target) {
-				/*if (!$(target[0]).is(".dropdown-display.clicked") && !$(target[0]).parents(".dropdown-display.clicked").length > 0){
-					if(!scope.$$phase) {
-						scope.$apply(function() {
-							console.log('Apply Called');
-							//scope.listVisible = false;
-						});
-					}
-					
-				}*/
+
 			});
 
 			scope.$watch("selected", function(value) {
@@ -228,9 +218,6 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q,$state,$ionicSideMenuDelegate,$timeout){
 	
 	$scope.$on('$ionicView.enter', function(){
-	// Any thing you can think of
-		//alert('Hi Inside loginController');
-		//$scope.fnInit1();
 		$scope.loading = true;
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
