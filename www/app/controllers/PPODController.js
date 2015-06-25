@@ -419,7 +419,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 		//PPODService.getStudentTestDetails($scope,sharedProperties);
 		//$scope.$emit('modelOffEvent', true);
 		$scope.test_ins_guid = $routeParams.test_ins_guid;
-		//alert('Test Instance Guid '+$scope.showName);
+		alert('Test Instance Guid '+$scope.showName);
 		PPODService.getStudentTestMarks($scope,sharedProperties);
 		//alert('TIG '+$scope.test_ins_guid);
     }
