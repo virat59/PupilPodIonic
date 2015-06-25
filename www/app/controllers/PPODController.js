@@ -318,7 +318,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		if(cache){
 			if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 			{
-				PPODService.getStudentDetails($scope,sharedProperties,myCache);
+				PPODService.getStudentDetails($scope,sharedProperties);
 			}
 			else{
 				$scope.loading = false;
@@ -330,7 +330,6 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		else{
 			PPODService.getStudentDetails($scope,sharedProperties);
 		}
-		$scope.$emit('modelOffEvent', true);
     }
 
     $scope.doRefresh = function() {
@@ -354,24 +353,20 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
-	//href="#/eventmenu/view_test_details/{{details.test_instance_guid}}"
 	$scope.goToDetails = function(tig){
-		var path = "/eventmenu/view_test_details";
-		alert('Path '+path);
-		var param = {'test_ins_guid': tig};
+		var path = "eventmenu.view_test_details";
+		var param = {test_ins_guid: tig};
 		$state.go(path,param);
 	};
 });
 
-app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$routeParams,$ionicSideMenuDelegate,$timeout){
+app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$stateParams,$ionicSideMenuDelegate,$timeout){
 	
 	$scope.$on('$ionicView.enter', function(){
-		alert('Hi TestDetailsForStudent');
-		//$scope.fnInit();
+		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
-		$scope.test_ins_guid = $routeParams.test_ins_guid;
-		alert('Test Instance Guid '+$scope.showName);
+		$scope.test_ins_guid = $stateParams.test_ins_guid;
 		PPODService.getStudentTestMarks($scope,sharedProperties);
     }
 	$scope.doRefresh = function() {
