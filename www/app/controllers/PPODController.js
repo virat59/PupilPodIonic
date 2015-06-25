@@ -303,6 +303,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 });
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout){
+	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
 		var param = {"status": true};
 		$scope.$emit('loginStatus', param);
@@ -356,7 +357,7 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 	//href="#/eventmenu/view_test_details/{{details.test_instance_guid}}"
 	$scope.goToDetails = function(tig){
 		var path = "/eventmenu/view_test_details";
-		//alert('Path '+path);
+		alert('Path '+path);
 		var param = {'test_ins_guid': tig};
 		$state.go(path,param);
 	};

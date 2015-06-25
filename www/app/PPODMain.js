@@ -86,10 +86,10 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 	.state('eventmenu.view_test_details', {
 		cache: false,
 		url: "/view_test_details",
+		params:      {'test_ins_guid': null},
 		views: {
 			'menuContent' :{
 				templateUrl: 'app/views/others/view_test_details.html',
-				params:      {'test_ins_guid': null},
 				controller: "TestDetailsForStudent"
 			}
 		}
