@@ -85,7 +85,7 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
     })
 	.state('eventmenu.view_test_details', {
 		cache: false,
-		url: "/view_test_details?test_ins_guid",
+		url: "/view_test_details/:test_ins_guid",
 		views: {
 			'menuContent' :{
 				templateUrl: 'app/views/others/view_test_details.html',
