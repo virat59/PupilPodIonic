@@ -146,6 +146,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 	
 	$rootScope.$on('studentChanged',function(event,args){
+		alert('studentChanged '+args['name']);
 		$scope.student_name = args['name'];
 		myCache.put('main_students_guid', args['student_guid']);
 		//$window.location.href = '#/change_student';
@@ -337,7 +338,8 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
     });
 	$scope.fnInit = function(){
 		//$window.location.href = '#/mainLanding';
-		$ionicSideMenuDelegate.toggleLeft();
+		if(!$ionicSideMenuDelegate.isOpenLeft())
+			$ionicSideMenuDelegate.toggleLeft();
 		$state.go('eventmenu.mainLanding');
 		return false;
     }
