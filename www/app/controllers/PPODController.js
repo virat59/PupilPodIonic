@@ -357,7 +357,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 				$state.go('eventmenu.login');
 			}
 		}
-    }
+    };
 
     $scope.doRefresh = function() {
 		console.log('Refreshing!');
