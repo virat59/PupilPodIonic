@@ -189,6 +189,9 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q,$state,$ionicSideMenuDelegate,$timeout){
 	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
 		$scope.loading = true;
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
@@ -268,6 +271,9 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
 		$ionicSideMenuDelegate.canDragContent(false);
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
 	});
 	$scope.$on('$ionicView.leave', function(){
 		$ionicSideMenuDelegate.canDragContent(true);
@@ -281,6 +287,9 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
@@ -305,7 +314,9 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout){
 	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
-		//alert('Inside Main Controller');
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
 		var param = {"status": true};
 		$scope.$emit('loginStatus', param);
 		$scope.loading = true;
@@ -346,6 +357,9 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 
 app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties,$ionicSideMenuDelegate,$timeout,$state){
 	$scope.$on('$ionicView.enter', function(){
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
@@ -367,6 +381,9 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$stateParams,$ionicSideMenuDelegate,$timeout){
 	
 	$scope.$on('$ionicView.enter', function(){
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
@@ -384,6 +401,9 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties,$state,$ionicSideMenuDelegate,$timeout){
 	
 	$scope.$on('$ionicView.enter', function(){
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
 		$scope.fnInit();
 	});
 	var ref = "";
@@ -416,6 +436,9 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 app.controller('logoutController',function($scope,PPODService,sharedProperties,$ionicSideMenuDelegate,$ionicHistory,$ionicPopup){
 	$scope.$on('$ionicView.enter', function(){
 		$ionicSideMenuDelegate.canDragContent(false);
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
 		$scope.spinning = true;
 		var param = {"status": false};
 		$scope.$emit('loginStatus', param);
@@ -437,9 +460,12 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 			if(res) {
 				PPODService.removeLocalEntry($scope,sharedProperties);
 			} else {
+				console.log('Inside else part');
 				if($ionicSideMenuDelegate.isOpenLeft()){
 					$ionicSideMenuDelegate.toggleLeft();
 				}
+				console.log('History');
+				console.log('History Table '+$ionicHistory.viewHistory());
 				$ionicHistory.goBack();
 				return false;
 			}
