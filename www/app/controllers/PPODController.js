@@ -413,7 +413,7 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
     };
 });
 
-app.controller('logoutController',function($scope,PPODService,sharedProperties,$ionicSideMenuDelegate){
+app.controller('logoutController',function($scope,PPODService,sharedProperties,$ionicSideMenuDelegate,$ionicHistory,$ionicPopup){
 	$scope.$on('$ionicView.enter', function(){
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.spinning = true;
@@ -426,6 +426,23 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 		$scope.spinning = false;
     });
 	$scope.fnInit = function(){
-		PPODService.removeLocalEntry($scope,sharedProperties);
+		$scope.showConfirm();
     }
+	$scope.showConfirm = function() {
+		var confirmPopup = $ionicPopup.confirm({
+			title: 'Logout',
+			template: 'Are you sure you want to logout?'
+		});
+		confirmPopup.then(function(res) {
+			if(res) {
+				PPODService.removeLocalEntry($scope,sharedProperties);
+			} else {
+				if($ionicSideMenuDelegate.isOpenLeft()){
+					$ionicSideMenuDelegate.toggleLeft();
+				}
+				$ionicHistory.goBack();
+				return false;
+			}
+		});
+	};
 });
