@@ -302,7 +302,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		}
 		$state.go('eventmenu.mainLanding');
 		return false;
-    }
+    };
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
@@ -314,12 +314,14 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout){
 	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
-		alert('Ionic View mainController');
+		//alert('Ionic View mainController');
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
 		var param = {"status": false};
-		$scope.$emit('loginStatus', param);
+		if(sharedProperties.getIsLogin() == false){
+			$scope.$emit('loginStatus', param);
+		}
 		$scope.loading = true;
 		$scope.fnInit();
 	});
@@ -332,11 +334,9 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			if(sharedProperties.getIsLogin() == false){
 				if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 				{
-					//alert('Exist for other student');
 					PPODService.getStudentDetails($scope,sharedProperties);
 				}
 				else{
-					//alert('Exist');
 					$scope.loading = false;
 					$scope.studentName = myCache.get('studentName');
 					$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');
@@ -348,7 +348,6 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			}
 		}
 		else{
-			//alert(' Not Exist');
 			if(sharedProperties.getIsLogin() == false){
 				PPODService.getStudentDetails($scope,sharedProperties);
 			}

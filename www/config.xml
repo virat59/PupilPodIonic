@@ -30,6 +30,7 @@
     <preference name="android-installLocation" value="auto" />
 	<preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
+	<preference name="StatusBarBackgroundColor" value="#EF473A" />
 	
 	<gap:plugin name="org.apache.cordova.battery-status" version="0.2.11" />
 	<gap:plugin name="org.apache.cordova.camera" version="0.3.2" />
