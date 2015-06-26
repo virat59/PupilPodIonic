@@ -454,7 +454,9 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 	$scope.showConfirm = function() {
 		var confirmPopup = $ionicPopup.confirm({
 			title: 'Logout',
-			template: 'Are you sure you want to logout?'
+			template: 'Are you sure you want to logout?',
+			okText: 'Logout', // String (default: 'OK'). The text of the OK button.
+			okType: 'button-assertive', // String (default: 'button-positive'). The type of the OK button.
 		});
 		confirmPopup.then(function(res) {
 			if(res) {
