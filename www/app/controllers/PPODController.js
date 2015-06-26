@@ -56,7 +56,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	};
 		
 	$rootScope.$on('loginStatus',function(event,args){
-		if(args.status){
+		if(!args.status){
 			$scope.loginTrue = false;
 			$scope.students = myCache.get('students');
 			$scope.student_name = sharedProperties.getStudentSelectedName();
@@ -210,30 +210,30 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	$scope.instDis = true;
 	
 	$scope.fnInit = function(){
-		$scope.$emit('modelOffEvent', true);
 		if(sharedProperties.getIsLogin() == false){
 			$state.go('eventmenu.mainLanding');
 			return false;
 		}
-		$scope.loading = true;
-					
-		var regkey = sharedProperties.getRegKey();
-		var usernameTemp = sharedProperties.getUserName();
-		var passwordTemp = sharedProperties.getPassWord();
-		var instnameTemp = sharedProperties.getInstName();
-		var appId = sharedProperties.getAppId();
-		var userGuid = sharedProperties.getUserGuid();
-		if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
-			$scope.login.instName = instnameTemp;
-			$scope.login.userName = usernameTemp;
-			$scope.login.password = passwordTemp;
-			$scope.login.registration_key = regkey;
-			$scope.login.app_id = appId;
-			$scope.login.user_guid = userGuid;
-			PPODService.loginFunction($scope,sharedProperties);
-		}
 		else{
-			$scope.loading = false;
+			$scope.loading = true;		
+			var regkey = sharedProperties.getRegKey();
+			var usernameTemp = sharedProperties.getUserName();
+			var passwordTemp = sharedProperties.getPassWord();
+			var instnameTemp = sharedProperties.getInstName();
+			var appId = sharedProperties.getAppId();
+			var userGuid = sharedProperties.getUserGuid();
+			if(instnameTemp != '' && usernameTemp != '' && passwordTemp != ''){
+				$scope.login.instName = instnameTemp;
+				$scope.login.userName = usernameTemp;
+				$scope.login.password = passwordTemp;
+				$scope.login.registration_key = regkey;
+				$scope.login.app_id = appId;
+				$scope.login.user_guid = userGuid;
+				PPODService.loginFunction($scope,sharedProperties);
+			}
+			else{
+				$scope.loading = false;
+			}
 		}
     }
 	$scope.submit = function(form) {
@@ -314,10 +314,11 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout){
 	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
+		alert('Ionic View mainController');
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		var param = {"status": true};
+		var param = {"status": false};
 		$scope.$emit('loginStatus', param);
 		$scope.loading = true;
 		$scope.fnInit();
@@ -451,7 +452,7 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 			$ionicSideMenuDelegate.toggleLeft();
 		}
 		$scope.spinning = true;
-		var param = {"status": false};
+		var param = {"status": true};
 		$scope.$emit('loginStatus', param);
 		$scope.fnInit();
 	});
