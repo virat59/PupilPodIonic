@@ -315,7 +315,6 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
 		//alert('Ionic View mainController');
-		PPODService.showAlert("Alert","Ionic View Controller");
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
