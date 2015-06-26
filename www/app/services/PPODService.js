@@ -144,12 +144,13 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		var tempUrl = "http://"+$scope.login.instName+"/"+url;
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {		
 			if(data.valid == 'VALID'){
+				alert('Valid');
+				sharedProperties.setIsLogin(false);
 				sharedProperties.setInstName(data.instName);
 				sharedProperties.setUserName(data.userName);
 				sharedProperties.setPassWord(data.password);
 				sharedProperties.setAppId(data.app_id);
 				sharedProperties.setUserGuid(data.user_guid);
-				sharedProperties.setIsLogin(false);
 				sharedProperties.setStudentSelectedGuid(data.studentDetails[0]['student_guid']);
 				sharedProperties.setStudentSelectedName(data.studentDetails[0]['name']);
 				$scope.login = true;
@@ -306,4 +307,16 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		sharedProperties.setStudentSelectedName("");
 		$state.go('eventmenu.login');
 	};
+	
+	this.showAlert = function(var_title,var_template) {
+		var alertPopup = $ionicPopup.alert({
+			title: var_title,//'Don\'t eat that!',
+			template: var_template//'It might taste good'
+		});
+		alertPopup.then(function(res) {
+			console.log('Thank you for not eating my delicious ice cream cone');
+		});
+	};
+	
+	
 });
