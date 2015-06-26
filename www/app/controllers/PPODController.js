@@ -322,6 +322,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		var param = {"status": false};
 		if(sharedProperties.getIsLogin() == false){
 			$scope.$emit('loginStatus', param);
+			alert('HI');
 		}
 		$scope.loading = true;
 		$scope.fnInit();
@@ -351,6 +352,9 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		else{
 			if(sharedProperties.getIsLogin() == false){
 				PPODService.getStudentDetails($scope,sharedProperties);
+			}
+			else{
+				$state.go('eventmenu.login');
 			}
 		}
     }
