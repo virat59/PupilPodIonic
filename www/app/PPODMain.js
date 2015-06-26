@@ -6,7 +6,10 @@ app.run(['$ionicPlatform','$timeout','$state','$window',
 	function($ionicPlatform,$timeout,$state,$window) {
 		FastClick.attach(document.body);
 		$ionicPlatform.on("resume", function(event) {
-			alert('Resume Event Occured');
+			//alert('Resume Event Occured');
+		});
+		$ionicPlatform.on("pause", function(event) {
+			//alert('Resume Event Occured');
 		});
 	}
 ]);
