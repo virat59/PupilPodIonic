@@ -4,8 +4,12 @@ app.constant('url', 'NBA/amfphp-2.1/Amfphp/?contentType=application/json');
 
 app.run(['$ionicPlatform','$timeout','$state','$window', 
 	function($ionicPlatform,$timeout,$state,$window) {
-	FastClick.attach(document.body);
-}]);
+		FastClick.attach(document.body);
+		$ionicPlatform.on("resume", function(event) {
+			alert('Resume Event Occured');
+		});
+	}
+]);
 
 app.factory('myCache', function($cacheFactory) {
  return $cacheFactory('myData');
