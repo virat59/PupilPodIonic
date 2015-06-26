@@ -328,22 +328,29 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		var main_students_guid = myCache.get('main_students_guid');
 		var cache = myCache.get('studentName');
 		if(cache){
-			if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
-			{
-				//alert('Exist for other student');
-				PPODService.getStudentDetails($scope,sharedProperties);
+			if(sharedProperties.getIsLogin() == false){
+				if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
+				{
+					//alert('Exist for other student');
+					PPODService.getStudentDetails($scope,sharedProperties);
+				}
+				else{
+					//alert('Exist');
+					$scope.loading = false;
+					$scope.studentName = myCache.get('studentName');
+					$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');
+					$scope.studentDetails = myCache.get('studentDetails');
+				}
 			}
 			else{
-				//alert('Exist');
-				$scope.loading = false;
-				$scope.studentName = myCache.get('studentName');
-				$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');;
-				$scope.studentDetails = myCache.get('studentDetails');
+				$state.go('eventmenu.login');
 			}
 		}
 		else{
 			//alert(' Not Exist');
-			PPODService.getStudentDetails($scope,sharedProperties);
+			if(sharedProperties.getIsLogin() == false){
+				PPODService.getStudentDetails($scope,sharedProperties);
+			}
 		}
     }
 
@@ -363,7 +370,9 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
-		PPODService.getStudentTestDetails($scope,sharedProperties);
+		if(sharedProperties.getIsLogin() == false){
+			PPODService.getStudentTestDetails($scope,sharedProperties);
+		}
     }
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
@@ -387,8 +396,10 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
-		$scope.test_ins_guid = $stateParams.test_ins_guid;
-		PPODService.getStudentTestMarks($scope,sharedProperties);
+		if(sharedProperties.getIsLogin() == false){
+			$scope.test_ins_guid = $stateParams.test_ins_guid;
+			PPODService.getStudentTestMarks($scope,sharedProperties);
+		}
     }
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
