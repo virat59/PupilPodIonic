@@ -11,6 +11,14 @@ app.run(['$ionicPlatform','$timeout','$state','$window',
 		$ionicPlatform.on("pause", function(event) {
 			//alert('Resume Event Occured');
 		});
+		$ionicPlatform.registerBackButtonAction(function () {
+			if($state.current.name=="eventmenu.login" || $state.current.name=="eventmenu.home" || $state.current.name=="eventmenu.mainLanding"){
+				navigator.app.exitApp();
+			}
+			else {
+				navigator.app.backHistory();
+			}
+		}, 100);
 	}
 ]);
 
