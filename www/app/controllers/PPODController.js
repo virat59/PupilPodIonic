@@ -452,8 +452,6 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 			$ionicSideMenuDelegate.toggleLeft();
 		}
 		$scope.spinning = true;
-		var param = {"status": true};
-		$scope.$emit('loginStatus', param);
 		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
@@ -472,14 +470,14 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 		});
 		confirmPopup.then(function(res) {
 			if(res) {
+				var param = {"status": true};
+				$scope.$emit('loginStatus', param);
 				PPODService.removeLocalEntry($scope,sharedProperties);
 			} else {
 				console.log('Inside else part');
 				if($ionicSideMenuDelegate.isOpenLeft()){
 					$ionicSideMenuDelegate.toggleLeft();
 				}
-				console.log('History');
-				console.log('History Table '+$ionicHistory.viewHistory());
 				$ionicHistory.goBack();
 				return false;
 			}
