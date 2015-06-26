@@ -311,7 +311,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
     };
 });
 
-app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout){
+app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout,$state){
 	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
 		//alert('Ionic View mainController');
