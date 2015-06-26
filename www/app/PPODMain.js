@@ -2,8 +2,8 @@ var app = angular.module('PPOD',['ionic',"ngCordova"]);
 
 app.constant('url', 'NBA/amfphp-2.1/Amfphp/?contentType=application/json');
 
-app.run(['$ionicPlatform','$timeout','$state','$window', 
-	function($ionicPlatform,$timeout,$state,$window) {
+app.run(['$ionicPlatform','$timeout','$state','$window','$ionicHistory', 
+	function($ionicPlatform,$timeout,$state,$window,$ionicHistory) {
 		FastClick.attach(document.body);
 		$ionicPlatform.on("resume", function(event) {
 			//alert('Resume Event Occured');
@@ -14,6 +14,9 @@ app.run(['$ionicPlatform','$timeout','$state','$window',
 		$ionicPlatform.registerBackButtonAction(function () {
 			if($state.current.name=="eventmenu.login" || $state.current.name=="eventmenu.home" || $state.current.name=="eventmenu.mainLanding"){
 				navigator.app.exitApp();
+			}
+			if($state.current.name=="eventmenu.logout"){
+				$ionicHistory.goBack(-2);
 			}
 			else {
 				navigator.app.backHistory();
