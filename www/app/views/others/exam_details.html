@@ -6,15 +6,13 @@
 				<h4>Test Details<h4>
 			</div>
 			<div class="item item-body">
-				<table>
-					<tbody>	
-						<tr ng-repeat="details in studentTestDetails">
-							<td>{{details.test_name}}</td>
-							<td>{{details.test_code}}</td>
-							<td><a ng-click="goToDetails(details.test_instance_guid)">Click Here<i class="ion-plus-circled"></i></a></td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="item" ng-repeat="details in studentTestDetails">
+					<div class="row">
+						<div class="col col-50">{{details.test_name}}</div>
+						<div class="col">{{details.test_code}}</div>
+						<div class="col"><a ng-click="goToDetails(details.test_instance_guid)">Details<i class="ion-plus-circled"></i></a></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</ion-content>
