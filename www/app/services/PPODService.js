@@ -144,7 +144,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		var tempUrl = "http://"+$scope.login.instName+"/"+url;
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {		
 			if(data.valid == 'VALID'){
-				alert('Valid');
+				//alert('Valid');
 				sharedProperties.setIsLogin(false);
 				sharedProperties.setInstName(data.instName);
 				sharedProperties.setUserName(data.userName);
