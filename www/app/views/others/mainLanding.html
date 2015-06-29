@@ -12,8 +12,10 @@
 				<div class="item item-body">
 					<div class="list list-inset">						
 						<div class="item" ng-repeat="details in studentDetails">
-							<div class="col">{{details.key}}</div>
-							<div class="col col-75">{{details.value}}</div>
+							<div class="row">
+								<div class="col col-25">{{details.key}}</div>
+								<div class="col col-75">{{details.value}}</div>
+							</div>
 						</div>
 					</div>
 				</div>
