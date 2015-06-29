@@ -1,15 +1,17 @@
 <ion-view view-title="Welcome">
 	<ion-content class="padding">
 		<ion-refresher on-refresh="doRefresh()"></ion-refresher>		
-		<div class="list">
-			<div class="item item-divider">
-				Test Details
+		<div class="card">
+			<div class="item item-avatar">
+				<h4>Test Details<h4>
 			</div>
-			<div class="item" ng-repeat="details in studentTestDetails">
-				<div class="row">
-					<div class="col col-50">{{details.test_name}}</div>
-					<div class="col">{{details.test_code}}</div>
-					<div class="col"><a ng-click="goToDetails(details.test_instance_guid)">Details<i class="ion-plus-circled"></i></a></div>
+			<div class="item item-body">
+				<div class="item" ng-repeat="details in studentTestDetails">
+					<div class="row">
+						<div class="col col-50">{{details.test_name}}</div>
+						<div class="col">{{details.test_code}}</div>
+						<div class="col"><a ng-click="goToDetails(details.test_instance_guid)">Details<i class="ion-plus-circled"></i></a></div>
+					</div>
 				</div>
 			</div>
 		</div>
