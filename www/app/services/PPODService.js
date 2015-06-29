@@ -222,10 +222,10 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$scope.studentTestDetails = data.all_tests;
 				$scope.termName = data.term_name;
 				$scope.sectionName = data.section_name;
-				alert('Valid Student Test Details');
+				//alert('Valid Student Test Details');
 			}
 			else{
-				alert('Invalid Student Test Details');
+				//alert('Invalid Student Test Details');
 				$scope.loading = false;
 			}
 		})

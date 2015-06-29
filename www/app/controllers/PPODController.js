@@ -371,12 +371,12 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		alert('Inside Get Test Details');
+		//alert('Inside Get Test Details');
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
 		if(sharedProperties.getIsLogin() == false){
-			alert('Inside Get Test Details for student');
+			//alert('Inside Get Test Details for student');
 			PPODService.getStudentTestDetails($scope,sharedProperties);
 		}
     }
