@@ -10,14 +10,18 @@
 				</div>
 
 				<div class="item item-body">
-					<table class="table table-hover">
-						<tbody>
-							<tr ng-repeat="details in studentDetails">
-								<td>{{details.key}}</td>
-								<td>{{details.value}}</td>
-							</tr>
-						</tbody>
-					</table>
+					<div class="list list-inset">
+						<table>
+							<tbody>
+								<tr ng-repeat="details in studentDetails">
+									<div class="item">
+										<div class="col"><td>{{details.key}}</td></div>
+										<div class="col col-75"><td>{{details.value}}</td></div>
+									</div>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

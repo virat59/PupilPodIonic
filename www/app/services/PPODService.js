@@ -310,8 +310,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	
 	this.showAlert = function(var_title,var_template) {
 		var alertPopup = $ionicPopup.alert({
-			title: var_title,//'Don\'t eat that!',
-			template: var_template//'It might taste good'
+			title: var_title,
+			template: var_template
 		});
 		alertPopup.then(function(res) {
 			console.log('Thank you for not eating my delicious ice cream cone');
