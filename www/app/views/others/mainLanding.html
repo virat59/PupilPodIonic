@@ -10,17 +10,11 @@
 				</div>
 
 				<div class="item item-body">
-					<div class="list list-inset">
-						<table>
-							<tbody>
-								<tr ng-repeat="details in studentDetails">
-									<div class="item">
-										<div class="col"><td>{{details.key}}</td></div>
-										<div class="col col-75"><td>{{details.value}}</td></div>
-									</div>
-								</tr>
-							</tbody>
-						</table>
+					<div class="list list-inset">						
+						<div class="item" ng-repeat="details in studentDetails">
+							<div class="col">{{details.key}}</div>
+							<div class="col col-75">{{details.value}}</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -28,7 +22,7 @@
 		<div ng-show="loading">
 			<div style="text-align: center;  margin-bottom: 40px !important;">
 				<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>
-					Please wait ...
+				Please wait ...
 			</div>
 		</div>
 	</ion-content>
