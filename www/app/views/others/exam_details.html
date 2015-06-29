@@ -9,9 +9,9 @@
 				<table>
 					<tbody>	
 						<tr ng-repeat="details in studentTestDetails">
-							<td><div class="col col-50">{{details.test_name}}</div></td>
-							<td><div class="col">{{details.test_code}}</div></td>
-							<td><div class="col"><a ng-click="goToDetails(details.test_instance_guid)">Click Here<i class="ion-plus-circled"></i></a></div></td>
+							<td>{{details.test_name}}</td>
+							<td>{{details.test_code}}</td>
+							<td><a ng-click="goToDetails(details.test_instance_guid)">Click Here<i class="ion-plus-circled"></i></a></td>
 						</tr>
 					</tbody>
 				</table>
