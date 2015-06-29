@@ -1,14 +1,13 @@
-<ion-view view-title="Welcome">
-	<ion-content class="padding">
+<ion-view view-title="PupilPod">
+	<ion-content>
 		<ion-refresher on-refresh="doRefresh()"></ion-refresher>
-		<div class="card">
-			<div class="item item-avatar">
-				<h4>Fees Details<h4>
+		<div class="list">
+			<div class="item item-divider">
+				Fees Details
 			</div>
-			<div class="item item-body">
-				<div class="header_sub"><h4>Fees Details<h4></div>
-				<i class="ion-thumbsup"></i>No Fees Due<br/>
-				<button type="button" id="makePayment" ng-click="makePayment(1)">Pay <i class="ion-social-usd-outline"></i></button>
+			<div class="item">
+				<i class="icon ion-thumbsup"></i>No Fees Due<br/>
+				<button type="button" id="makePayment" ng-click="makePayment(1)">Pay <i class="icon ion-social-usd-outline"></i></button>
 			</div>
 		</div>
 	</ion-content>
