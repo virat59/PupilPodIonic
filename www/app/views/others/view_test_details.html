@@ -2,11 +2,11 @@
 	<ion-content class="padding">
 		<ion-refresher on-refresh="doRefresh()">	 
 		</ion-refresher>
-		<div class="card">			
-			<div class="item item-button-right">
+		<div class="list">			
+			<div class="item item-divider">
 				{{testName}}&nbsp;-&nbsp;[&nbsp;{{testCode}}&nbsp;]
 			</div>
-			<div class="item item-body">
+			<div class="item">
 				<table>
 					<thead>
 						<tr>
@@ -14,7 +14,7 @@
 							<th>Skill Name</th>
 							<th>Marks</th>
 							<th>Grade</th>
-							<th>Remarks</th>
+							<!--<th>Remarks</th>-->
 						</tr>
 					</thead>
 					<tbody>
@@ -23,7 +23,7 @@
 							<td>{{details.skill_name}}</td>
 							<td>{{details.marks_obtained}}</td>
 							<td>{{details.grade_obtained}}</td>
-							<td>{{details.remarks}}</td>
+							<!--<td>{{details.remarks}}</td>-->
 						</tr>
 					</tbody>
 				</table>
