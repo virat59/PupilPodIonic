@@ -133,6 +133,13 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
       return deferred.promise;
     };
 	
+	$scope.goTo = function(url){
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
+		$state.go('eventmenu.change_student');
+	}
+	
 	initialize();
 });
 
