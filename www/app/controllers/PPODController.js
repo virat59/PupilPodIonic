@@ -72,6 +72,7 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 	
 	
 	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+		alert('Event Occured '+notification.event);
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
