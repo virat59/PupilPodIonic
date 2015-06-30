@@ -1,4 +1,4 @@
-var app = angular.module('PPOD',['ionic',"ngCordova"]);
+var app = angular.module('PPOD',['ionic','ngCordova']);
 
 app.constant('url', 'NBA/amfphp-2.1/Amfphp/?contentType=application/json');
 
