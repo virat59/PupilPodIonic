@@ -72,7 +72,7 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 	
 	
 	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-		alert('Event Occured '+notification.event);
+		//alert('Event Occured '+notification.event);
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
@@ -97,31 +97,6 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
       }
     });
 	
-	$rootScope.$on('notificationReceived', function(event, notification) {
-		alert('Event Occured '+notification.event);
-      switch(notification.event) {
-        case 'registered':
-          if (notification.regid.length > 0 ) {
-			PPODService.AddValueToDB($scope,'reg_id',notification.regid);
-			$state.go('eventmenu.login');
-          }
-          break;
-
-        case 'message':
-          // this is the actual push notification. its format depends on the data model from the push server
-			$cordovaDialogs.alert(notification.message, "Push Notification Received")
-			alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-			break;
-
-        case 'error':
-          alert('GCM error = ' + notification.msg);
-          break;
-
-        default:
-          alert('An unknown GCM event has occurred');
-          break;
-      }
-    });
 	
 	function getDBValues(field_key) {
 		if (!window.openDatabase) {
@@ -171,37 +146,10 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 	initialize();
 });
 
-app.run(function($rootScope,$cordovaDialogs) {
+app.run(function($rootScope) {
 	angular.element(document).on("click", function(e) {
 		$rootScope.$broadcast("documentClicked", angular.element(e.target));
-	});
-	
-	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-		alert('Event Occured '+notification.event);
-      switch(notification.event) {
-        case 'registered':
-          if (notification.regid.length > 0 ) {
-			PPODService.AddValueToDB($scope,'reg_id',notification.regid);
-			$state.go('eventmenu.login');
-          }
-          break;
-
-        case 'message':
-          // this is the actual push notification. its format depends on the data model from the push server
-			$cordovaDialogs.alert(notification.message, "Push Notification Received")
-			alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-			break;
-
-        case 'error':
-          alert('GCM error = ' + notification.msg);
-          break;
-
-        default:
-          alert('An unknown GCM event has occurred');
-          break;
-      }
-    });
-	
+	});	
 });
 
 app.directive("dropdown", function($rootScope,sharedProperties) {
