@@ -3,7 +3,7 @@
 *	author Virat Joshi
 **/
 
-app.controller('PPODController',function($scope,PPODService,$http,$window,$document,$rootScope,$cordovaPush,$cordovaSQLite,sharedProperties,myCache,$ionicPlatform,$ionicSideMenuDelegate,$state,$timeout){
+app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$cordovaPush,sharedProperties,myCache,$ionicPlatform,$ionicSideMenuDelegate,$state,$timeout,$cordovaDialogs){
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	
@@ -83,8 +83,9 @@ app.controller('PPODController',function($scope,PPODService,$http,$window,$docum
 
         case 'message':
           // this is the actual push notification. its format depends on the data model from the push server
-          alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-          break;
+			$cordovaDialogs.alert(notification.message, "Push Notification Received")
+			alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+			break;
 
         case 'error':
           alert('GCM error = ' + notification.msg);
