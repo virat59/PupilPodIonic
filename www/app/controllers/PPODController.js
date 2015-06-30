@@ -77,7 +77,8 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
         case 'registered':
           if (notification.regid.length > 0 ) {
 			PPODService.AddValueToDB($scope,'reg_id',notification.regid);
-			$state.go('eventmenu.login');
+			if($state.current.name=="eventmenu.home")
+				$state.go('eventmenu.login');
           }
           break;
 

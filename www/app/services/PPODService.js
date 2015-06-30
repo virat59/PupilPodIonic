@@ -88,10 +88,10 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				};
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
-						$cordovaPush.register(androidConfig).then(function(resultPush) {
+						/*$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
 							alert('Error '+err);
-						})
+						})*/
 					}
 					else{
 						transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, resultT1)
@@ -118,6 +118,10 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 								}
 							}
 						},errorHandlerQuery);
+						$cordovaPush.register(androidConfig).then(function(resultPush) {
+						}, function(err) {
+							alert('Error '+err);
+						})
 						$state.go('eventmenu.login');
 					}
 				}
