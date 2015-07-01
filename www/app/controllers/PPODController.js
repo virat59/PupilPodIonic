@@ -76,10 +76,9 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
-			//PPODService.AddValueToDB($scope,'reg_id',notification.regid);
-			PPODService.sendRegKeyToServer($scope,'reg_id',notification.regid);
-			if($state.current.name=="eventmenu.home")
-				$state.go('eventmenu.login');
+			PPODService.AddValueToDB($scope,'reg_id',notification.regid);
+			//PPODService.sendRegKeyToServer($scope,'reg_id',notification.regid);
+			$state.go('eventmenu.login');
           }
           break;
 

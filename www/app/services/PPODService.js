@@ -92,7 +92,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 						}, function(err) {
 							alert('Error '+err);
 						});
-						$state.go('eventmenu.login');
+						//$state.go('eventmenu.login');
 					}
 					else{
 						transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, resultT1)
@@ -123,7 +123,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 						}, function(err) {
 							alert('Error '+err);
 						});
-						$state.go('eventmenu.login');
+						//$state.go('eventmenu.login');
 					}
 				}
 				else{
