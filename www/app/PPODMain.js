@@ -13,7 +13,12 @@ app.run(['$ionicPlatform','$timeout','$state','$window','$ionicHistory',
 		});
 		$ionicPlatform.registerBackButtonAction(function () {
 			if($state.current.name=="eventmenu.login" || $state.current.name=="eventmenu.home" || $state.current.name=="eventmenu.mainLanding"){
-				navigator.app.exitApp();
+				//navigator.app.exitApp();
+				navigator.Backbutton.goHome(function() {
+					console.log('success');
+				}, function() {
+					console.log('fail');
+				});
 			}
 			if($state.current.name=="eventmenu.logout"){
 				$ionicHistory.goBack(-2);
