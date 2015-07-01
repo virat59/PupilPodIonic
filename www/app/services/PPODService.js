@@ -88,10 +88,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				};
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
-						/*$cordovaPush.register(androidConfig).then(function(resultPush) {
+						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
 							alert('Error '+err);
-						})*/
+						});
+						$state.go('eventmenu.login');
 					}
 					else{
 						transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, resultT1)
@@ -121,7 +122,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
 							alert('Error '+err);
-						})
+						});
 						$state.go('eventmenu.login');
 					}
 				}
@@ -324,5 +325,51 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		});
 	};
 	
+	this.sendRegKeyToServer = function($scope,'reg_id',regid){
+		if(sharedProperties.getRegKey() == ''){
+			if(sharedProperties.getAppId() != ""){
+				self.AddValueToDB($scope,'username',data.userName);
+				var param = JSON.stringify({
+					"serviceName":"TnetMobileService", 
+					"methodName":"saveRegistrationKey",
+					"parameters":[null,{'app_id' : sharedProperties.getAppId(),'notification_key': regid }]
+				});
+				var tempUrl = "http://"+sharedProperties.getInstName()+"/"+url;
+				$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+				$http.post(tempUrl, param).success(function(data, status, headers, config) {
+					if(data.valid == 'VALID'){
+						
+					}
+				})
+				.error(function(data, status, headers, config){
+					$scope.loading = false;
+					alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+					return false;
+				});
+			}
+		}
+		else if(sharedProperties.getRegKey() != regid){
+			if(sharedProperties.getAppId() != ""){
+				self.AddValueToDB($scope,'username',data.userName);
+				var param = JSON.stringify({
+					"serviceName":"TnetMobileService", 
+					"methodName":"saveRegistrationKey",
+					"parameters":[null,{'app_id' : sharedProperties.getAppId(),'notification_key': regid }]
+				});
+				var tempUrl = "http://"+sharedProperties.getInstName()+"/"+url;
+				$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+				$http.post(tempUrl, param).success(function(data, status, headers, config) {
+					if(data.valid == 'VALID'){
+						
+					}
+				})
+				.error(function(data, status, headers, config){
+					$scope.loading = false;
+					alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+					return false;
+				});
+			}
+		}
+	};
 	
 });
