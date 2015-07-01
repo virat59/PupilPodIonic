@@ -325,10 +325,10 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		});
 	};
 	
-	this.sendRegKeyToServer = function($scope,'reg_id',regid){
+	this.sendRegKeyToServer = function($scope,key,regid){
 		if(sharedProperties.getRegKey() == ''){
+			self.AddValueToDB($scope,key,regid);
 			if(sharedProperties.getAppId() != ""){
-				self.AddValueToDB($scope,'username',data.userName);
 				var param = JSON.stringify({
 					"serviceName":"TnetMobileService", 
 					"methodName":"saveRegistrationKey",
@@ -349,8 +349,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			}
 		}
 		else if(sharedProperties.getRegKey() != regid){
+			self.AddValueToDB($scope,key,regid);
 			if(sharedProperties.getAppId() != ""){
-				self.AddValueToDB($scope,'username',data.userName);
 				var param = JSON.stringify({
 					"serviceName":"TnetMobileService", 
 					"methodName":"saveRegistrationKey",
