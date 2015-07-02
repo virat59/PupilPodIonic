@@ -393,10 +393,11 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		$scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT1)
 			{
+				alert('Got data');
 				for (var i = 0; i < resultT1.rows.length; i++) {
 					var row = resultT1.rows.item(i);
 					tempData.push(row);
-					if(i > 3)
+					if(i > 2)
 						break;
 				}
 			},errorHandlerQuery);
