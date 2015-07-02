@@ -16,6 +16,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	this.createTable = function(tx){
+		alert('createTable');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],self.nullHandler,self.errorHandlerQuery);
 		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_notification_details(notify_id INTEGER NOT NULL PRIMARY KEY, notify_guid TEXT NOT NULL,notify_date TEXT,notify_type TEXT,notify_msg TEXT,entity_guid TEXT)',[],self.nullHandler,self.errorHandlerQuery);
 	};
@@ -84,6 +85,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	this.successCallBack = function() { 
+		alert('successCallBack');
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
