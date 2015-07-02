@@ -336,11 +336,13 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		}
 		$scope.loading = true;
 		$scope.fnInit();
+		alert('mainController load');
 	});
 	$scope.$on('$ionicView.leave', function(){
     });
 	$scope.fnInit = function(){
 		//var main_students_guid = myCache.get('main_students_guid');
+		alert('mainController init');
 		var tempData = {};
 		if(sharedProperties.getTestDBConObj() == null){
 			var shortName = 'tnet_pupilpod';
@@ -364,16 +366,18 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			},PPODService.errorHandlerQuery);
 		},PPODService.errorHandlerTransaction,PPODService.nullHandler);
 		myCache.set('messageDashboard') = tempData;
-		
+		alert('mainController load 11 ');
 		var cache = myCache.get('studentName');
 		if(cache){
+			alert('mainController load cache found');
 			if(sharedProperties.getIsLogin() == false){
 				if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 				{
+					alert('mainController load cache found for other student');
 					PPODService.getStudentDetails($scope,sharedProperties);
 				}
 				else{
-					
+					alert('mainController load cache found');
 					$scope.loading = false;
 					$scope.messageDashboard = myCache.get('messageDashboard');
 					$scope.programDashboard = myCache.get('programDashboard');
@@ -385,14 +389,18 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			}
 			else{
 				//$scope.loading = false;
+				alert('mainController load not login');
 				$state.go('eventmenu.login');
 			}
 		}
 		else{
+			alert('mainController load cache not found');
 			if(sharedProperties.getIsLogin() == false){
+				alert('mainController load login cache not found');
 				PPODService.getStudentDetails($scope,sharedProperties);
 			}
 			else{
+				alert('mainController load not login cache not found');
 				//$scope.loading = false;
 				$state.go('eventmenu.login');
 			}

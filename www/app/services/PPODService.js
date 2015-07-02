@@ -204,6 +204,10 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				myCache.put('studentName', data.name);
 				myCache.put('studentImage', data.photo);
 				myCache.put('main_students_guid', sharedProperties.getStudentSelectedGuid());
+				myCache.get('programDashboard',data.program_details);
+				myCache.get('cal_of_eventDashboard',data.coe_details);
+				myCache.get('attendanceDashboard',data.attendance_details);
+				myCache.get('feesDashboard',data.fees_details);
 			}
 			else{
 				$scope.loading = false;
