@@ -287,6 +287,7 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
+		alert('Home Controller');
 	});
 	$scope.$on('$ionicView.leave', function(){
 		$ionicSideMenuDelegate.canDragContent(true);
