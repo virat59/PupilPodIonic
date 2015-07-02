@@ -178,9 +178,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$scope.instDis = false;
 				$scope.loading = false;
 				alert('Wrong User Name or Password, Please try again '+data.reason);
+				$state.go('eventmenu.login');
 			}
 		})
 		.error(function(data, status, headers, config){
+			$state.go('eventmenu.login');
 			$scope.loading = false;
 			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
 			return false;

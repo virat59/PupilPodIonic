@@ -24,11 +24,6 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 	};
 	
 	function initialize() {
-		$scope.ngViewClass = "modalOff";
-		if(sharedProperties.getIsLogin() == false){
-			$state.go('eventmenu.mainLanding');
-			return false;
-		}	
 		$scope.db = null;
         bindEvents();
     };
@@ -314,8 +309,9 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		$state.go('eventmenu.mainLanding');
-		return false;
+		if(sharedProperties.getIsLogin() == false){
+			$state.go('eventmenu.mainLanding');
+		}
     };
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
