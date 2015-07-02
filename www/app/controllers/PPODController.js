@@ -338,6 +338,39 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	});
 	$scope.$on('$ionicView.leave', function(){
     });
+	
+	function createTable(tx){
+		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery);
+		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_notification_details(notify_id INTEGER NOT NULL PRIMARY KEY, notify_guid TEXT NOT NULL,notify_date TEXT,notify_type TEXT,notify_msg TEXT,entity_guid TEXT)',[],nullHandler,errorHandlerQuery);
+	};
+	
+    function successHandler(result) {
+		return false;
+    };
+	
+    function errorHandler(error) {
+		alert("errorHandler Code : "+error.code+" Message "+error.message);
+		return false;
+    };
+	
+	function errorHandlerTransaction(error){
+		alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message);
+		return false;
+	};
+	
+	function errorHandlerQuery(error){
+		alert("errorHandlerQuery Code : "+error.code+" Message "+error.message);
+		return false;
+	};
+	
+	function successInsert(error){
+		return false;
+	};
+	
+	function nullHandler(){
+		return false;
+	};
+	
 	$scope.fnInit = function(){
 		//var main_students_guid = myCache.get('main_students_guid');
 		alert('mainController init');
@@ -349,7 +382,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			var maxSize = 65535;
 			db = $window.openDatabase(shortName, version, displayName,maxSize);
 			alert('mainController init 1111111111111111111');
-			db.transaction(PPODService.createTable,PPODService.errorHandlerTransaction,PPODService.nullHandler);
+			db.transaction(createTable,errorHandlerTransaction,nullHandler);
 			alert('mainController init 22222222222222222222222');
 			$scope.db = db;		
 		}
@@ -366,8 +399,8 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 					if(i > 3)
 						break;
 				}
-			},PPODService.errorHandlerQuery);
-		},PPODService.errorHandlerTransaction,PPODService.nullHandler);
+			},errorHandlerQuery);
+		},errorHandlerTransaction,nullHandler);
 		myCache.set('messageDashboard') = tempData;
 		alert('mainController load 11 ');
 		var cache = myCache.get('studentName');

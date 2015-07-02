@@ -11,36 +11,35 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		var displayName = 'Tnet_Pupilpod';
 		var maxSize = 65535;
 		db = $window.openDatabase(shortName, version, displayName,maxSize);
-		db.transaction(self.createTable,self.errorHandlerTransaction,self.successCallBack);
+		db.transaction(createTable,errorHandlerTransaction,successCallBack);
 		$scope.db = db;
 	};
 	
-	this.createTable = function(tx){
-		alert('createTable');
-		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],self.nullHandler,self.errorHandlerQuery);
-		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_notification_details(notify_id INTEGER NOT NULL PRIMARY KEY, notify_guid TEXT NOT NULL,notify_date TEXT,notify_type TEXT,notify_msg TEXT,entity_guid TEXT)',[],self.nullHandler,self.errorHandlerQuery);
+	function createTable(tx){
+		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery);
+		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_notification_details(notify_id INTEGER NOT NULL PRIMARY KEY, notify_guid TEXT NOT NULL,notify_date TEXT,notify_type TEXT,notify_msg TEXT,entity_guid TEXT)',[],nullHandler,errorHandlerQuery);
 	};
 	
-    this.successHandler = function(result) {
+    function successHandler(result) {
 		return false;
     };
 	
-    this.errorHandler = function(error) {
+    function errorHandler(error) {
 		alert("errorHandler Code : "+error.code+" Message "+error.message);
 		return false;
     };
 	
-	this.errorHandlerTransaction = function(error){
+	function errorHandlerTransaction(error){
 		alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message);
 		return false;
 	};
 	
-	this.errorHandlerQuery = function(error){
+	function errorHandlerQuery(error){
 		alert("errorHandlerQuery Code : "+error.code+" Message "+error.message);
 		return false;
 	};
 	
-	this.successInsert = function(error){
+	function successInsert(error){
 		return false;
 	};
 	
@@ -57,7 +56,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			var displayName = 'Tnet_Pupilpod';
 			var maxSize = 65535;
 			db = $window.openDatabase(shortName, version, displayName,maxSize);
-			db.transaction(self.createTable,self.errorHandlerTransaction,self.nullHandler);
+			db.transaction(createTable,errorHandlerTransaction,nullHandler);
 			$scope.db = db;		
 		}
 		else{
@@ -68,24 +67,23 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			{
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
-						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],self.nullHandler,self.errorHandlerQuery);
+						transaction.executeSql('INSERT INTO tnet_login_details(field_key, field_value) VALUES (?,?)',[field_key, field_value],nullHandler,errorHandlerQuery);
 					}
 					else{
-						transaction.executeSql('UPDATE tnet_login_details set field_value = ? WHERE field_key = ? ',[ field_value,field_key],self.nullHandler,self.errorHandlerQuery);
+						transaction.executeSql('UPDATE tnet_login_details set field_value = ? WHERE field_key = ? ',[ field_value,field_key],nullHandler,errorHandlerQuery);
 					}
 				}
-			},self.errorHandlerQuery);
-		},self.errorHandlerTransaction,self.nullHandler);
+			},errorHandlerQuery);
+		},errorHandlerTransaction,nullHandler);
 				
 		return false;
 	};
 	
-	this.nullHandler = function(){
+	function nullHandler(){
 		return false;
 	};
 	
-	this.successCallBack = function() { 
-		alert('successCallBack');
+	function successCallBack() { 
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
@@ -124,7 +122,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 									sharedProperties.setUserGuid(row.field_value);
 								}
 							}
-						},self.errorHandlerQuery);
+						},errorHandlerQuery);
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
 							alert('Error '+err);
@@ -139,8 +137,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					})
 				}
 				return false;
-			},self.errorHandlerQuery);
-		},self.errorHandlerTransaction,self.nullHandler);
+			},errorHandlerQuery);
+		},errorHandlerTransaction,nullHandler);
 		return false;
 	};
 	
@@ -180,11 +178,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$scope.instDis = false;
 				$scope.loading = false;
 				alert('Wrong User Name or Password, Please try again '+data.reason);
-				$state.go('eventmenu.login');
+				//$state.go('eventmenu.login');
 			}
 		})
 		.error(function(data, status, headers, config){
-			$state.go('eventmenu.login');
+			//$state.go('eventmenu.login');
 			$scope.loading = false;
 			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
 			return false;
@@ -294,21 +292,21 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					if(row.field_key == 'reg_id'){
 					}
 					else if(row.field_key == 'username'){
-						transaction.executeSql('DELETE FROM tnet_login_details WHERE field_key = ? ',[row.field_key],self.nullHandler,self.errorHandlerQuery);
+						transaction.executeSql('DELETE FROM tnet_login_details WHERE field_key = ? ',[row.field_key],nullHandler,errorHandlerQuery);
 					}
 					else if(row.field_key == 'password'){
-						transaction.executeSql('DELETE FROM tnet_login_details WHERE field_key = ? ',[row.field_key],self.nullHandler,self.errorHandlerQuery);
+						transaction.executeSql('DELETE FROM tnet_login_details WHERE field_key = ? ',[row.field_key],nullHandler,errorHandlerQuery);
 					}
 					else if(row.field_key == 'instname'){
-						transaction.executeSql('DELETE FROM tnet_login_details WHERE field_key = ? ',[row.field_key],self.nullHandler,self.errorHandlerQuery);
+						transaction.executeSql('DELETE FROM tnet_login_details WHERE field_key = ? ',[row.field_key],nullHandler,errorHandlerQuery);
 					}
 					else if(row.field_key == 'appid'){
 					}
 					else if(row.field_key == 'userguid'){
 					}
 				}
-			},self.errorHandlerQuery);
-		},self.errorHandlerTransaction,self.nullHandler);
+			},errorHandlerQuery);
+		},errorHandlerTransaction,nullHandler);
 		
 		sharedProperties.setInstName("");
 		sharedProperties.setUserName("");
@@ -382,7 +380,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			var displayName = 'Tnet_Pupilpod';
 			var maxSize = 65535;
 			db = $window.openDatabase(shortName, version, displayName,maxSize);
-			db.transaction(self.createTable,self.errorHandlerTransaction,self.nullHandler);
+			db.transaction(createTable,errorHandlerTransaction,nullHandler);
 			$scope.db = db;		
 		}
 		else{
@@ -390,7 +388,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		}
 		$scope.db.transaction(function(transaction) {
 			var t_Date = Date();
-			transaction.executeSql('INSERT INTO tnet_notification_details(notify_guid,notify_date,notify_type,notify_msg,entity_guid) VALUES (?,?,?,?,?)',[notificationDetails.entity_instance_guid,t_Date, notificationDetails.notify_type, notificationDetails.notify_msg,notificationDetails.entity_guid],self.nullHandler,self.errorHandlerQuery);		
-		},self.errorHandlerTransaction,self.nullHandler);
+			transaction.executeSql('INSERT INTO tnet_notification_details(notify_guid,notify_date,notify_type,notify_msg,entity_guid) VALUES (?,?,?,?,?)',[notificationDetails.entity_instance_guid,t_Date, notificationDetails.notify_type, notificationDetails.notify_msg,notificationDetails.entity_guid],nullHandler,errorHandlerQuery);		
+		},errorHandlerTransaction,nullHandler);
 	};
 });
