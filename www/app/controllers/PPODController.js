@@ -374,36 +374,9 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	$scope.fnInit = function(){
 		//var main_students_guid = myCache.get('main_students_guid');
 		alert('mainController init');
-		var tempData = {};
-		if(sharedProperties.getTestDBConObj() == null){
-			var shortName = 'tnet_pupilpod';
-			var version = '1.0';
-			var displayName = 'Tnet_Pupilpod';
-			var maxSize = 65535;
-			db = $window.openDatabase(shortName, version, displayName,maxSize);
-			alert('mainController init 1111111111111111111');
-			db.transaction(createTable,errorHandlerTransaction,nullHandler);
-			alert('mainController init 22222222222222222222222');
-			$scope.db = db;		
-		}
-		else{
-			$scope.db = sharedProperties.getTestDBConObj();
-		}
-		alert('mainController load 11 before');
-		$scope.db.transaction(function(transaction) {
-			transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT1)
-			{
-				alert('Got data');
-				for (var i = 0; i < resultT1.rows.length; i++) {
-					var row = resultT1.rows.item(i);
-					tempData.push(row);
-					if(i > 2)
-						break;
-				}
-			},errorHandlerQuery);
-		},errorHandlerTransaction,nullHandler);
-		myCache.set('messageDashboard') = tempData;
-		alert('mainController load 11 ');
+		
+		
+		
 		var cache = myCache.get('studentName');
 		if(cache){
 			alert('mainController load cache found');
