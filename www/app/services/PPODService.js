@@ -15,31 +15,31 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		$scope.db = db;
 	};
 	
-	this.createTable(tx){
+	this.createTable = function(tx){
 		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],self.nullHandler,self.errorHandlerQuery);
 		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_notification_details(notify_id INTEGER NOT NULL PRIMARY KEY, notify_guid TEXT NOT NULL,notify_date TEXT,notify_type TEXT,notify_msg TEXT,entity_guid TEXT)',[],self.nullHandler,self.errorHandlerQuery);
 	};
 	
-    this.successHandler(result) {
+    this.successHandler = function(result) {
 		return false;
     };
 	
-    this.errorHandler(error) {
+    this.errorHandler = function(error) {
 		alert("errorHandler Code : "+error.code+" Message "+error.message);
 		return false;
     };
 	
-	this.errorHandlerTransaction(error){
+	this.errorHandlerTransaction = function(error){
 		alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message);
 		return false;
 	};
 	
-	this.errorHandlerQuery(error){
+	this.errorHandlerQuery = function(error){
 		alert("errorHandlerQuery Code : "+error.code+" Message "+error.message);
 		return false;
 	};
 	
-	this.successInsert(error){
+	this.successInsert = function(error){
 		return false;
 	};
 	
@@ -79,11 +79,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		return false;
 	};
 	
-	this.nullHandler(){
+	this.nullHandler = function(){
 		return false;
 	};
 	
-	this.successCallBack() { 
+	this.successCallBack = function() { 
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
