@@ -348,7 +348,9 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			var displayName = 'Tnet_Pupilpod';
 			var maxSize = 65535;
 			db = $window.openDatabase(shortName, version, displayName,maxSize);
+			alert('mainController init 1111111111111111111');
 			db.transaction(PPODService.createTable,PPODService.errorHandlerTransaction,PPODService.nullHandler);
+			alert('mainController init 22222222222222222222222');
 			$scope.db = db;		
 		}
 		else{
