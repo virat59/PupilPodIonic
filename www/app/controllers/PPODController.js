@@ -332,8 +332,9 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			$scope.$emit('loginStatus', param);
 		}
 		$scope.loading = true;
-		$scope.fnInit();
 		alert('mainController load');
+		$scope.fnInit();
+		
 	});
 	$scope.$on('$ionicView.leave', function(){
     });
@@ -353,6 +354,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		else{
 			$scope.db = sharedProperties.getTestDBConObj();
 		}
+		alert('mainController load 11 before');
 		$scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT1)
 			{
