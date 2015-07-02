@@ -2,20 +2,110 @@
 	<ion-content>
 		<ion-refresher on-refresh="doRefresh()"></ion-refresher>
 		<div ng-show="!loading">
-			<div class="list">
+			<div id="messaages" class="list card">
 				<div class="item item-avatar">
-					<img src="{{studentImage}}" alt="Student Image" height="80" width="80"/>
-					<h2>{{studentName}}</h2>
-					<!--<p>November 05, 1955</p>-->
+					<img src="mcfly.jpg">
+					<h2>Messages</h2>
+					<p>Get all updates here</p>
 				</div>
-
-				<div class="item" ng-repeat="details in studentDetails">
-					<div class="row">
-						<div class="col col-50">{{details.key}}</div>
-						<div class="col col-50">{{details.value}}</div>
+				<div class="item item-body">
+					<div class="list">
+						<div class="item" ng-repeat="details in messageDashboard">
+							<div class="row">
+								<div class="col">{{details.notify_msg}}</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
+		
+			<div id="program" class="list card">
+				<div class="item item-avatar">
+					<img src="mcfly.jpg">
+					<h2>Program</h2>
+					<p>Program Details</p>
+				</div>
+				<div class="item item-body">
+					<div class="list">
+						<div class="item" ng-repeat="details in programDashboard">
+							<div class="row">
+								<div class="col col-50">{{details.key}}</div>
+								<div class="col col-50">{{details.value}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="cal_of_event" class="list card">
+				<div class="item item-avatar">
+					<img src="mcfly.jpg">
+					<h2>Calender of events</h2>
+					<p>All near by events</p>
+				</div>
+				<div class="item item-body">
+					<div class="list">
+						<div class="item" ng-repeat="details in cal_of_eventDashboard">
+							<div class="row">
+								<div class="col col-25">{{details.start_date}}</div>
+								<div class="col col-75">{{details.name}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="attendance" class="list card">
+				<div class="item item-avatar">
+					<img src="mcfly.jpg">
+					<h2>Attendance</h2>
+					<p>Get attendance related details</p>
+				</div>
+				<div class="item item-body">
+					<div class="list">
+						<div class="item" ng-repeat="details in attendanceDashboard">
+							<div class="row">
+								<div class="col col-25">23-5-10</div>
+								<div class="col col-75">Hii School Meetup</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="fees" class="list card">
+				<div class="item item-avatar">
+					<img src="mcfly.jpg">
+					<h2>Fees</h2>
+					<p>Get fees due details</p>
+				</div>
+				<div class="item item-body">
+					<div class="list">
+						<div class="item" ng-if="feesDashboard.fees_pending == 'Y'">
+							<div>Fees Pending</div>{{feesDashboard.fees_amount}}
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="profile" class="list card">
+				<div class="item item-avatar">
+					<img src="mcfly.jpg">
+					<h2>Profile</h2>
+					<p>Student Profile</p>
+				</div>
+				<div class="item item-body">
+					<div class="list">
+						<div class="item" ng-repeat="details in studentDetails">
+							<div class="row">
+								<div class="col col-50">{{details.key}}</div>
+								<div class="col col-50">{{details.value}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				
 		</div>
 		<div ng-show="loading">
 			<div style="text-align: center;  margin-bottom: 40px !important;">

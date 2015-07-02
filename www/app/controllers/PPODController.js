@@ -327,14 +327,12 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout,$state){
 	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
-		//alert('Ionic View mainController');
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
 		var param = {"status": false};
 		if(sharedProperties.getIsLogin() == false){
 			$scope.$emit('loginStatus', param);
-			//alert('HI');
 		}
 		$scope.loading = true;
 		$scope.fnInit();
@@ -342,7 +340,31 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	$scope.$on('$ionicView.leave', function(){
     });
 	$scope.fnInit = function(){
-		var main_students_guid = myCache.get('main_students_guid');
+		//var main_students_guid = myCache.get('main_students_guid');
+		var tempData = {};
+		if(sharedProperties.getTestDBConObj() == null){
+			var shortName = 'tnet_pupilpod';
+			var version = '1.0';
+			var displayName = 'Tnet_Pupilpod';
+			var maxSize = 65535;
+			db = $window.openDatabase(shortName, version, displayName,maxSize);
+			db.transaction(PPODService.createTable,PPODService.errorHandlerTransaction,PPODService.nullHandler);
+			$scope.db = db;		
+		}
+		else{
+			$scope.db = sharedProperties.getTestDBConObj();
+		}
+		$scope.db.transaction(function(transaction) {
+			transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT1)
+			{
+				for (var i = 0; i < 3; i++) {
+					var row = resultT1.rows.item(i);
+					tempData.push(row);
+				}
+			},PPODService.errorHandlerQuery);
+		},PPODService.errorHandlerTransaction,PPODService.nullHandler);
+		myCache.set('messageDashboard') = tempData;
+		
 		var cache = myCache.get('studentName');
 		if(cache){
 			if(sharedProperties.getIsLogin() == false){
@@ -351,13 +373,18 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 					PPODService.getStudentDetails($scope,sharedProperties);
 				}
 				else{
+					
 					$scope.loading = false;
-					$scope.studentName = myCache.get('studentName');
-					$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');
+					$scope.messageDashboard = myCache.get('messageDashboard');
+					$scope.programDashboard = myCache.get('programDashboard');
+					$scope.cal_of_eventDashboard = myCache.get('cal_of_eventDashboard');
+					$scope.attendanceDashboard = myCache.get('attendanceDashboard');
+					$scope.feesDashboard = myCache.get('feesDashboard');
 					$scope.studentDetails = myCache.get('studentDetails');
 				}
 			}
 			else{
+				//$scope.loading = false;
 				$state.go('eventmenu.login');
 			}
 		}
@@ -366,6 +393,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 				PPODService.getStudentDetails($scope,sharedProperties);
 			}
 			else{
+				//$scope.loading = false;
 				$state.go('eventmenu.login');
 			}
 		}
@@ -501,4 +529,30 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 			}
 		});
 	};
+});
+
+app.controller('studentViewController',function($scope,PPODService,sharedProperties,$ionicSideMenuDelegate,$ionicHistory,$ionicPopup){
+	$scope.loading = false;
+	$scope.$on('$ionicView.enter', function(){
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
+		$scope.spinning = true;
+		$scope.fnInit();
+	});
+	$scope.$on('$ionicView.leave', function(){
+		
+    });
+	$scope.fnInit = function(){	
+		$scope.loading = false;
+		$scope.studentName = myCache.get('studentName');
+		$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');
+		$scope.studentDetails = myCache.get('studentDetails');
+    };
+	$scope.doRefresh = function() {
+		console.log('Refreshing!');
+		$timeout( function() {
+		  $scope.$broadcast('scroll.refreshComplete');
+		}, 1000);
+    };
 });

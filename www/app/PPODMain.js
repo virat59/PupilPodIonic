@@ -133,6 +133,15 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 				controller: "logoutController"
 			}
 		}
+    })
+	.state('eventmenu.student_view', {
+		url: "/student_view",
+		views: {
+			'menuContent' :{
+				templateUrl: 'app/views/others/student_view.html',
+				controller: "studentViewController"
+			}
+		}
     });
 	$urlRouterProvider.otherwise("/eventmenu/home");
 }]);
@@ -149,6 +158,7 @@ app.service('sharedProperties', function () {
 	var student_guid = '';
 	var student_name = '';
 	var test_instance_guid = '';
+	var dbObj_com = null;
 	return {
 		getRegKey: function() {
 			return reg_key;
@@ -215,6 +225,12 @@ app.service('sharedProperties', function () {
 		},
 		setTestInstanceGuid: function(testInsGuid){
 			test_instance_guid = testInsGuid;
+		},
+		getTestDBConObj: function(){
+			return dbObj_com;
+		},
+		setTestDBConObj: function(dbObj){
+			dbObj_com = dbObj;
 		}
 	};
 });

@@ -49,7 +49,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		}
 		if(field_key == 'reg_id')
 			sharedProperties.setRegKey(field_value);
-		if($scope.db == null || $scope.db == undefined || $scope.db == ''){
+		if(sharedProperties.getTestDBConObj() == null){
 			var shortName = 'tnet_pupilpod';
 			var version = '1.0';
 			var displayName = 'Tnet_Pupilpod';
@@ -57,6 +57,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			db = $window.openDatabase(shortName, version, displayName,maxSize);
 			db.transaction(createTable,errorHandlerTransaction,nullHandler);
 			$scope.db = db;		
+		}
+		else{
+			$scope.db = sharedProperties.getTestDBConObj();
 		}
 		$scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", [field_key],function(transaction, result)
@@ -273,15 +276,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			return;
 		}
 		
-		if($scope.db == null || $scope.db == undefined || $scope.db == ''){
-			var shortName = 'tnet_pupilpod';
-			var version = '1.0';
-			var displayName = 'Tnet_Pupilpod';
-			var maxSize = 65535;
-			db = $window.openDatabase(shortName, version, displayName,maxSize);
-			db.transaction(createTable,errorHandlerTransaction,nullHandler);
-			$scope.db = db;		
-		}
+		event_category_name
 		$scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, resultT1)
 			{
@@ -371,5 +366,22 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			}
 		}
 	};
-	
+	this.AddNotificationToDB = function($scope,notificationDetails){
+		if(sharedProperties.getTestDBConObj() == null){
+			var shortName = 'tnet_pupilpod';
+			var version = '1.0';
+			var displayName = 'Tnet_Pupilpod';
+			var maxSize = 65535;
+			db = $window.openDatabase(shortName, version, displayName,maxSize);
+			db.transaction(createTable,errorHandlerTransaction,nullHandler);
+			$scope.db = db;		
+		}
+		else{
+			$scope.db = sharedProperties.getTestDBConObj();
+		}
+		$scope.db.transaction(function(transaction) {
+			var t_Date = Date();
+			transaction.executeSql('INSERT INTO tnet_notification_details(notify_guid,notify_date,notify_type,notify_msg,entity_guid) VALUES (?,?,?,?,?)',[notificationDetails.entity_instance_guid,t_Date, notificationDetails.notify_type, notificationDetails.notify_msg,notificationDetails.entity_guid],nullHandler,errorHandlerQuery);		
+		},errorHandlerTransaction,nullHandler);
+	};
 });
