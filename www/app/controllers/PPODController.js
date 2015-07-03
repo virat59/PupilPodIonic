@@ -179,12 +179,12 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 app.controller('loginController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$q,$state,$ionicSideMenuDelegate,$timeout){
 	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
-		if($ionicSideMenuDelegate.isOpenLeft()){
-			$ionicSideMenuDelegate.toggleLeft();
-		}
 		$scope.loading = true;
 		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
 	});
 	$scope.$on('$ionicView.leave', function(){
 		$ionicSideMenuDelegate.canDragContent(true);
