@@ -17,8 +17,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	function createTable(tx){
-		//tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)'); 
-		//tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_notification_details(notify_id INTEGER NOT NULL PRIMARY KEY, notify_guid TEXT NOT NULL, notify_date TEXT NOT NULL, notify_type TEXT NOT NULL, notify_msg TEXT NOT NULL, entity_guid TEXT NOT NULL)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery); 
 		return false;
 	};
 	
@@ -66,7 +65,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			db.transaction(createTable,errorHandlerTransaction,nullHandler);
 			$scope.db = db;		
 		}
-		$scope.db.transaction(function(transaction) {
+		/* $scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", [field_key],function(transaction, result)
 			{
 				if (result != null && result.rows != null) {
@@ -78,7 +77,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					}
 				}
 			},errorHandlerQuery);
-		},errorHandlerTransaction,nullHandler);
+		},errorHandlerTransaction,nullHandler); */
 				
 		return false;
 	};
