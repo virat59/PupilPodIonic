@@ -14,10 +14,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		db = $window.openDatabase(shortName, version, displayName,maxSize);
 		db.transaction(createTable,errorHandlerTransaction,successCallBack);
 		$scope.db = db;
+		sharedProperties.setTestDBConObj(db);
 	};
 	
 	function createTable(tx){
-		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery);
+		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY,field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery);
 	};
 	
     function successHandler(result) {
@@ -44,7 +45,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	this.AddValueToDB = function($scope,field_key,field_value) { 
-		if (!window.openDatabase) {
+		if (!$window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
 		}
@@ -293,12 +294,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	this.removeLocalEntry = function($scope,sharedProperties){
-		if (!window.openDatabase) {
+		if (!$window.openDatabase) {
 			alert('Databases are not supported in this browser.');
 			return;
 		}
 		
-		event_category_name
 		$scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, resultT1)
 			{

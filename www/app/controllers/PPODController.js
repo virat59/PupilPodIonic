@@ -102,29 +102,6 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
     });
 	
 	
-	function getDBValues(field_key) {
-		if (!window.openDatabase) {
-			alert('Databases are not supported in this browser.');
-			return;
-		}
-		db.transaction(function(transaction) {
-			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", [field_key],function(transaction, result)
-			{
-				if (result != null && result.rows != null) {
-					for (var i = 0; i < result.rows.length; i++) {
-						var row = result.rows.item(i);
-					}
-					var row = result.rows.item(0);
-					resultForRet = row.field_value;
-				}
-				else{
-					resultForRet = '';
-				}
-			},errorHandlerQuery);
-		},errorHandlerTransaction,nullHandler);
-		return false;
-	};
-	
 	$rootScope.$on('studentChanged',function(event,args){
 		$scope.student_name = args['name'];
 		$state.go('eventmenu.change_student');
@@ -461,7 +438,7 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 		$scope.$emit('modelOffEvent', true);	
     }
 	$scope.makePayment = function(payment_id){
-		ref = window.open('http://thoughtnet.pupilpod.in/paymenttest.php', '_blank', 'location=no');
+		ref = $window.open('http://thoughtnet.pupilpod.in/paymenttest.php', '_blank', 'location=no');
         ref.addEventListener('loadstart', function(event) {  });
         ref.addEventListener('loadstop', function(event) {  
 			if (event.url.match("/close")) {
