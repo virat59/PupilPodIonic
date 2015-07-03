@@ -4,7 +4,7 @@
 **/
 
 
-app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope,$state,myCache,$ionicPopup){    
+app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope,$state,myCache,$ionicPopup,$cordovaSQLite){    
 	this.dbConnection = function($scope,sharedProperties){
 		alert('Inside dbConnection');
 		var shortName = 'tnet_pupilpod';
