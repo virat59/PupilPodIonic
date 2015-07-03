@@ -65,7 +65,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			db.transaction(createTable,errorHandlerTransaction,nullHandler);
 			$scope.db = db;		
 		}
-		/* $scope.db.transaction(function(transaction) {
+		$scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", [field_key],function(transaction, result)
 			{
 				if (result != null && result.rows != null) {
@@ -77,8 +77,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					}
 				}
 			},errorHandlerQuery);
-		},errorHandlerTransaction,nullHandler); */
-				
+		},errorHandlerTransaction,nullHandler);
 		return false;
 	};
 	
@@ -126,7 +125,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 							}
 						},errorHandlerQuery);
 						
-						transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT1)
+						/* transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT1)
 						{
 							alert('Got data');
 							for (var i = 0; i < resultT1.rows.length; i++) {
@@ -135,9 +134,9 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 								if(i > 2)
 									break;
 							}
-						},errorHandlerQuery);
+						},errorHandlerQuery); 
 						
-						myCache.set('messageDashboard') = tempData;
+						myCache.set('messageDashboard') = tempData;*/
 						
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
