@@ -123,7 +123,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 							}
 						},errorHandlerQuery);
 						var tempData = {};
-						alert('Reach here 11');
 						transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT2)
 						{
 							alert('Got data');
@@ -134,8 +133,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 									break;
 							}
 						},errorHandlerQuery); 
-						alert('Reach here 22');
-						myCache.set('messageDashboard') = tempData;
+						myCache.set('messageDashboard',tempData);
 						
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
