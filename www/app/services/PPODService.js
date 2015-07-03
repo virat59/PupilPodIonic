@@ -6,7 +6,7 @@
 
 app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope,$state,myCache,$ionicPopup){    
 	this.dbConnection = function($scope,sharedProperties){
-		alert('inside dbConnection');
+		alert('Inside dbConnection');
 		var shortName = 'tnet_pupilpod';
 		var version = '1.0';
 		var displayName = 'Tnet_Pupilpod';
@@ -17,26 +17,35 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	function createTable(tx){
-		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY,field_key TEXT NOT NULL, field_value TEXT NOT NULL)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery); 
 	};
+	
+    function successHandler(result) {
+		return false;
+    };
 	
     function errorHandler(error) {
 		alert("errorHandler Code : "+error.code+" Message "+error.message);
-	};
+		return false;
+    };
 	
 	function errorHandlerTransaction(error){
 		alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message);
+		return false;
 	};
 	
 	function errorHandlerQuery(error){
 		alert("errorHandlerQuery Code : "+error.code+" Message "+error.message);
+		return false;
 	};
 	
 	function successInsert(){
+		return false;
 	};
 	
 	function nullHandler(){
 		alert('Table created');
+		return false;
 	};
 	
 	this.AddValueToDB = function($scope,field_key,field_value) { 
