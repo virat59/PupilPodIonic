@@ -124,7 +124,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 							}
 						},errorHandlerQuery);
 						
-						transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT1)
+						/* transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT1)
 						{
 							alert('Got data');
 							for (var i = 0; i < resultT1.rows.length; i++) {
@@ -133,7 +133,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 								if(i > 2)
 									break;
 							}
-						},errorHandlerQuery); 
+						},errorHandlerQuery); */ 
 						
 						myCache.set('messageDashboard') = tempData;
 						
