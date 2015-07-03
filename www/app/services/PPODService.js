@@ -17,31 +17,26 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	function createTable(tx){
-		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY,field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery);
-		return false;
+		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY,field_key TEXT NOT NULL, field_value TEXT NOT NULL)');
 	};
-	
-    function successHandler(result) {
-		return false;
-    };
 	
     function errorHandler(error) {
 		alert("errorHandler Code : "+error.code+" Message "+error.message);
-		return false;
-    };
+	};
 	
 	function errorHandlerTransaction(error){
 		alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message);
-		return false;
 	};
 	
 	function errorHandlerQuery(error){
 		alert("errorHandlerQuery Code : "+error.code+" Message "+error.message);
-		return false;
 	};
 	
-	function successInsert(error){
-		return false;
+	function successInsert(){
+	};
+	
+	function nullHandler(){
+		alert('Table created');
 	};
 	
 	this.AddValueToDB = function($scope,field_key,field_value) { 
@@ -77,10 +72,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		return false;
 	};
 	
-	function nullHandler(){
-		alert('Table created');
-		return false;
-	};
+	
 	
 	function successCallBack() { 
 		db.transaction(function(transaction) {
