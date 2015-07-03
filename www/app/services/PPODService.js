@@ -6,7 +6,6 @@
 
 app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope,$state,myCache,$ionicPopup,$cordovaSQLite){    
 	this.dbConnection = function($scope,sharedProperties){
-		alert('Inside dbConnection');
 		var shortName = 'tnet_pupilpod';
 		var version = '1.0';
 		var displayName = 'Tnet_Pupilpod';
@@ -46,7 +45,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	function nullHandler(){
-		alert('Table created');
 		return false;
 	};
 	
@@ -389,7 +387,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		}
 	};
 	this.AddNotificationToDB = function($scope,notificationDetails){
-		alert('Notification Occured');
 		if($scope.db == null || $scope.db == ''){
 			var shortName = 'tnet_pupilpod';
 			var version = '1.0';

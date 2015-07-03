@@ -34,7 +34,6 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 	
 	function bindEvents() {
 		$ionicPlatform.ready(function(){
-			alert('ionicPlatform ready');
 			if(sharedProperties.getIsLogin() == false){
 				$state.go('eventmenu.mainLanding');
 			}
@@ -73,7 +72,6 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 	
 	
 	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-		alert('Event Occured '+notification.event);
       switch(notification.event) {
         case 'registered':
           if (notification.regid.length > 0 ) {
@@ -266,7 +264,6 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		alert('Home Controller');
 	});
 	$scope.$on('$ionicView.leave', function(){
 		$ionicSideMenuDelegate.canDragContent(true);
@@ -316,7 +313,6 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			$scope.$emit('loginStatus', param);
 		}
 		$scope.loading = true;
-		alert('mainController load');
 		$scope.fnInit();
 		
 	});
@@ -324,22 +320,15 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
     });
 	
 	$scope.fnInit = function(){
-		//var main_students_guid = myCache.get('main_students_guid');
-		alert('mainController init');
-		
-		
-		
+		//var main_students_guid = myCache.get('main_students_guid');		
 		var cache = myCache.get('studentName');
 		if(cache){
-			alert('mainController load cache found');
 			if(sharedProperties.getIsLogin() == false){
 				if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 				{
-					alert('mainController load cache found for other student');
 					PPODService.getStudentDetails($scope,sharedProperties);
 				}
 				else{
-					alert('mainController load cache found');
 					$scope.loading = false;
 					$scope.messageDashboard = myCache.get('messageDashboard');
 					$scope.programDashboard = myCache.get('programDashboard');
@@ -351,18 +340,14 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			}
 			else{
 				//$scope.loading = false;
-				alert('mainController load not login');
 				$state.go('eventmenu.login');
 			}
 		}
 		else{
-			alert('mainController load cache not found');
 			if(sharedProperties.getIsLogin() == false){
-				alert('mainController load login cache not found');
 				PPODService.getStudentDetails($scope,sharedProperties);
 			}
 			else{
-				alert('mainController load not login cache not found');
 				//$scope.loading = false;
 				$state.go('eventmenu.login');
 			}
@@ -382,12 +367,10 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		//alert('Inside Get Test Details');
 		$scope.fnInit();
 	});
 	$scope.fnInit = function(){
 		if(sharedProperties.getIsLogin() == false){
-			//alert('Inside Get Test Details for student');
 			PPODService.getStudentTestDetails($scope,sharedProperties);
 		}
     }
