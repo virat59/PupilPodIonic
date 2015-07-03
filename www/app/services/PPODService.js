@@ -18,6 +18,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	
 	function createTable(tx){
 		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY,field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery);
+		return false;
 	};
 	
     function successHandler(result) {
@@ -77,6 +78,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	function nullHandler(){
+		alert('Table created');
 		return false;
 	};
 	
