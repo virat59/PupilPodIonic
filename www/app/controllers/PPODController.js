@@ -34,7 +34,13 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 	
 	function bindEvents() {
 		$ionicPlatform.ready(function(){
-			onDeviceReady();
+			alert('ionicPlatform ready');
+			if(sharedProperties.getIsLogin() == false){
+				$state.go('eventmenu.mainLanding');
+			}
+			else{
+				onDeviceReady();
+			}
 		});
     };
 	
