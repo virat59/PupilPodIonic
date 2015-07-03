@@ -124,7 +124,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 							}
 						},errorHandlerQuery);
 						
-						/* transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT1)
+						transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT1)
 						{
 							alert('Got data');
 							for (var i = 0; i < resultT1.rows.length; i++) {
@@ -135,7 +135,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 							}
 						},errorHandlerQuery); 
 						
-						myCache.set('messageDashboard') = tempData;*/
+						myCache.set('messageDashboard') = tempData;
 						
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
@@ -152,6 +152,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				}
 				return false;
 			},errorHandlerQuery);
+			
+			
 		},errorHandlerTransaction,nullHandler);
 		return false;
 	};
@@ -225,10 +227,10 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				myCache.put('studentName', data.name);
 				myCache.put('studentImage', data.photo);
 				myCache.put('main_students_guid', sharedProperties.getStudentSelectedGuid());
-				myCache.get('programDashboard',data.program_details);
-				myCache.get('cal_of_eventDashboard',data.coe_details);
-				myCache.get('attendanceDashboard',data.attendance_details);
-				myCache.get('feesDashboard',data.fees_details);
+				myCache.put('programDashboard',data.program_details);
+				myCache.put('cal_of_eventDashboard',data.coe_details);
+				myCache.put('attendanceDashboard',data.attendance_details);
+				myCache.put('feesDashboard',data.fees_details);
 			}
 			else{
 				$scope.loading = false;
