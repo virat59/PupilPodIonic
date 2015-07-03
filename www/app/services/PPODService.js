@@ -86,7 +86,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
-				var tempData = {};
 				var androidConfig = {
 					"senderID": "74320630987",
 				};
@@ -123,18 +122,19 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 								}
 							}
 						},errorHandlerQuery);
-						
-						transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT1)
+						var tempData = {};
+						alert('Reach here 11');
+						transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT2)
 						{
 							alert('Got data');
-							for (var i = 0; i < resultT1.rows.length; i++) {
-								var row = resultT1.rows.item(i);
+							for (var i = 0; i < resultT2.rows.length; i++) {
+								var row = resultT2.rows.item(i);
 								tempData.push(row);
 								if(i > 2)
 									break;
 							}
 						},errorHandlerQuery); 
-						
+						alert('Reach here 22');
 						myCache.set('messageDashboard') = tempData;
 						
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
