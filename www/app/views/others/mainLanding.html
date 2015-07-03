@@ -63,10 +63,10 @@
 				</div>
 				<div class="item item-body">
 					<div class="list">
-						<div class="item" ng-repeat="details in attendanceDashboard">
+						<div class="item">
 							<div class="row">
-								<div class="col col-25">23-5-10</div>
-								<div class="col col-75">Hii School Meetup</div>
+								<div class="col col-75">Attendance %</div>
+								<div class="col col-25">{{attendanceDashboard}}</div>
 							</div>
 						</div>
 					</div>
@@ -82,7 +82,8 @@
 				<div class="item item-body">
 					<div class="list">
 						<div class="item" ng-if="feesDashboard.fees_pending == 'Y'">
-							<div>Fees Pending</div>{{feesDashboard.fees_amount}}
+							<div class="col col-50">Fees Pending</div>
+							<div class="col col-50">{{feesDashboard.fees_amount}}</div>
 						</div>
 					</div>
 				</div>
