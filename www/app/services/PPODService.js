@@ -17,10 +17,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	};
 	
 	function createTable(tx){
-		alert('inside createTable');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_login_details(Id INTEGER NOT NULL PRIMARY KEY, field_key TEXT NOT NULL, field_value TEXT NOT NULL)',[],nullHandler,errorHandlerQuery);
-		alert('after createTable 111');
-		//tx.executeSql('CREATE TABLE IF NOT EXISTS tnet_notification_details(notify_id INTEGER NOT NULL PRIMARY KEY, notify_guid TEXT NOT NULL,notify_date TEXT,notify_type TEXT,notify_msg TEXT,entity_guid TEXT)',[],nullHandler,errorHandlerQuery);
 	};
 	
     function successHandler(result) {
