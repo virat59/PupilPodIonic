@@ -14,7 +14,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		db = $window.openDatabase(shortName, version, displayName,maxSize);
 		db.transaction(createTable,errorHandlerTransaction,successCallBack);
 		$scope.db = db;
-		sharedProperties.setTestDBConObj(db);
 	};
 	
 	function createTable(tx){
@@ -51,7 +50,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		}
 		if(field_key == 'reg_id')
 			sharedProperties.setRegKey(field_value);
-		if(sharedProperties.getTestDBConObj() == null){
+		if($scope.db == null || $scope.db == ''){
 			var shortName = 'tnet_pupilpod';
 			var version = '1.0';
 			var displayName = 'Tnet_Pupilpod';
@@ -59,9 +58,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			db = $window.openDatabase(shortName, version, displayName,maxSize);
 			db.transaction(createTable,errorHandlerTransaction,nullHandler);
 			$scope.db = db;		
-		}
-		else{
-			$scope.db = sharedProperties.getTestDBConObj();
 		}
 		$scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", [field_key],function(transaction, result)
@@ -389,7 +385,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		}
 	};
 	this.AddNotificationToDB = function($scope,notificationDetails){
-		if(sharedProperties.getTestDBConObj() == null){
+		if($scope.db == null || $scope.db == ''){
 			var shortName = 'tnet_pupilpod';
 			var version = '1.0';
 			var displayName = 'Tnet_Pupilpod';
@@ -397,9 +393,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			db = $window.openDatabase(shortName, version, displayName,maxSize);
 			db.transaction(createTable,errorHandlerTransaction,nullHandler);
 			$scope.db = db;		
-		}
-		else{
-			$scope.db = sharedProperties.getTestDBConObj();
 		}
 		$scope.db.transaction(function(transaction) {
 			var t_Date = Date();
